@@ -15,12 +15,21 @@ Download and place the file(s) in a directory called RegexFunctions in your exte
 
 Add the following code at the bottom of your LocalSettings.php:
 
- wfLoadExtension( 'RegexFunctions' );
+```php
+ wfLoadExtension("EditWarning");
+```
+Run the "update.php" script from the base directory of your MediaWiki installation:
 
+```shell
+ php maintenance/update.php
+```
 Done – Navigate to Special:Version on your wiki to verify that the extension is successfully installed.
 
 ## Known Issues
 The extension can only recognize the cancel of page editing if the user uses the "Cancel" button. Otherwise the warning will be showed until the timeout (default 10 minutes).
 
 ## Configuration
-
+Option | Default | Description |
+--- | --- | --- |
+$wgEditWarning_ShowInfoBox | false | Displays a info box for the first editor. |
+$wgEditWarning_Timeout | 10 | How long should a warning box be displayed |

@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sebastian Schmid"
+		]
+	},
+	"editwarning-desc"       : "Exibe uma mensagem no caso de vários usuários editarem o mesmo artigo, ao mesmo tempo.",
+	"ew-notice-article"      : "Até <strong>$1 $2</strong> outros usuários receberão a mensagem deque você está editando este artigo. Você pode aumentar esse período de tempo clicando no botão <em>Mostrar previsão</em>.<br />$3",
+	"ew-notice-section"      : "Até <strong>$1 $2</strong> outros usuários receberão a mensagem de que você está editando esta seção. Você pode aumentar esse período de tempo clicando no botão <em>Mostrar previsão</em>.<br />$3",
+	"ew-warning-article"     : "O usuário <strong>$1</strong> abriu esta página para edição em <strong>$2 $3</strong>. Você não deve fazer alterações nesta página pelos próximos <strong>$4 $5</strong> para evitar conflitos de edição.<br />$6",
+	"ew-warning-section"     : "O usuário <strong>$1</strong> abriu esta seção para edição em <strong>$2 $3</strong>. Você não deve fazer alterações nesta página pelos próximos <strong>$4 $5</strong> para evitar conflitos de edição.<br />$6",
+	"ew-warning-sectionedit" : "Uma ou mais seções deste artigo estão sendo editadas neste momento. Por favor edite apenas um trecho específico (seção), ou espere <strong>$1 $2</strong> para fazer edições maiores neste artigo, para evita conflitos de edição.<br />$3",
+	"ew-leave"               : "Você pode sair dessa tela clicando no botão <em>Cancelar</em>.",
+	"ew-canceled"            : "Edição cancelada.",
+	"ew-minute"              : "minuto",
+	"ew-minutes"             : "minutos",
+	"ew-seconds"             : "segundos",
+	"ew-button-cancel"       : "Cancelar",
+	"apihelp-editwarning-example-1": "Deletes the lock entry of user 'Admin' with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-2": "Set a lock entry for user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-example-3": "Deletes the lock entry of section 3 of user 'Admin' with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-4": "Set a lock entry for section 3 of user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-summary": "Deletes or adds articles/sections of a user to the EditWarning Lock table based on the article id and/or section id",
+	"apihelp-editwarning-apiparam-ewaction": "'lock' will add an entry. 'unlock' will remove entry",
+	"apihelp-editwarning-apiparam-articleid": "Article ID of the page you want to lock. (e.g. 56)",
+	"apihelp-editwarning-apiparam-section": "Section ID of the article you want to lock. (e.g. 3)",
+	"apihelp-editwarning-apiparam-user": "Valid User that the lock entry is related to (e.g. Admin)"
+
+}

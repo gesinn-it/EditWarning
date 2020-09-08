@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sebastian Schmid"
+		]
+	},
+	"editwarning-desc"       : "Shows a warning message if several users edit the same article at the same time.",
+	"ew-notice-article"      : "Until <strong>$1 $2</strong> other users get the warning that you're editing this article. You can extend this time period by clicking <em>Show preview</em>.<br />$3",
+	"ew-notice-section"      : "Until <strong>$1 $2</strong> other users get the warning that you're editing this section. You can extend this time period by clicking <em>Show preview</em>.<br />$3",
+	"ew-warning-article"     : "User <strong>$1</strong> opened this page for editing on <strong>$2 $3</strong>. You shouldn't make any changes for the next <strong>$4 $5</strong> to avoid edit conflicts.<br />$6",
+	"ew-warning-section"     : "User <strong>$1</strong> opened this section for editing on <strong>$2 $3</strong>. You shouldn't make any changes for the next <strong>$4 $5</strong> to avoid edit conflicts.<br />$6",
+	"ew-warning-sectionedit" : "One or more sections of this article are edited currently. Please edit a specific section or wait <strong>$1 $2</strong> for bigger changes of this article, to avoid edit conflicts.<br />$3",
+	"ew-leave"               : "You can leave this screen by clicking <em>Cancel</em>.",
+	"ew-canceled"            : "Canceled editing.",
+	"ew-minute"              : "minute",
+	"ew-minutes"             : "minutes",
+	"ew-seconds"             : "seconds",
+	"ew-button-cancel"       : "Cancel",
+	"apihelp-editwarning-example-1": "Deletes the lock entry of user 'Admin' with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-2": "Set a lock entry for user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-example-3": "Deletes the lock entry of section 3 of user 'Admin' with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-4": "Set a lock entry for section 3 of user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-summary": "Deletes or adds articles/sections of a user to the EditWarning Lock table based on the article id and/or section id",
+	"apihelp-editwarning-apiparam-ewaction": "'lock' will add an entry. 'unlock' will remove entry",
+	"apihelp-editwarning-apiparam-articleid": "Article ID of the page you want to lock. (e.g. 56)",
+	"apihelp-editwarning-apiparam-section": "Section ID of the article you want to lock. (e.g. 3)",
+	"apihelp-editwarning-apiparam-user": "Valid User that the lock entry is related to (e.g. Admin)"
+}

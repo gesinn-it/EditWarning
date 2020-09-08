@@ -1,0 +1,73 @@
+{
+	"name": "EditWarning",
+	"version": "1.0.0",
+	"author": [
+		"Sebastian Schmid (gesinn.it GmbH & Co. KG)",
+		"Thomas David"
+	],
+	"url": "http://gitlab/mediawiki-extension/EditWarning",
+	"descriptionmsg": "editwarning-desc",
+	"license-name": "GPL-3.0-or-later",
+	"type": "other",
+	"callback": "EditWarning\\EditWarningHooks::init",
+	"AutoloadClasses": {
+		"EditWarning\\EditWarning": "src/EditWarning.php",
+		"EditWarning\\EditWarningCancelMsg": "src/EditWarningCancelMsg.php",
+		"EditWarning\\EditWarningInfoMsg": "src/EditWarningInfoMsg.php",
+		"EditWarning\\EditWarningLock": "src/EditWarningLock.php",
+		"EditWarning\\EditWarningMessage": "src/EditWarningMessage.php",
+		"EditWarning\\EditWarningMsg": "src/EditWarningMsg.php",
+		"EditWarning\\EditWarningMsgFactory": "src/EditWarningMsgFactory.php",
+		"EditWarning\\EditWarningWarnMsg": "src/EditWarningWarnMsg.php",
+		"EditWarning\\EditWarningApi": "src/EditWarningApi.php",
+		"EditWarning\\EditWarningHooks": "EditWarningHooks.php"
+	},
+	"APIModules": {
+		"editwarning": "EditWarning\\EditWarningApi"
+	},
+	"Hooks": {
+		"BeforePageDisplay": [
+			"EditWarning\\EditWarningHooks::edit"
+		],
+		"UserLogout": [
+			"EditWarning\\EditWarningHooks::logout"
+		],
+		"LoadExtensionSchemaUpdates" : [
+			"EditWarning\\EditWarningHooks::onLoadExtensionSchemaUpdates"
+		]
+	},
+	"MessagesDirs": {
+		"EditWarning": [
+			"i18n"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "EditWarning/resources"
+	},
+	"ResourceModules": {
+		"ext.editwarning": {
+			"scripts": [
+				"js/editwarning.js"
+			],
+			"styles": [
+				"css/style.css"
+			]
+		},
+		"ext.editwarning.overlay": {
+			"scripts": [
+				"js/overlay.js"
+			]
+		}
+	},
+	"config": {
+		"EditWarning_Timeout":  10,
+		"EditWarning_ShowInfoBox": false,
+		"TS_Timeout": 1,
+		"TS_Current": 2,
+		"Type_Article": 1,
+		"Type_Article_Section_Conflict": 2,
+		"Type_Section": 3
+	},
+	"manifest_version": 1
+}

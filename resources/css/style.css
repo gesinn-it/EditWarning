@@ -33,14 +33,6 @@
     border: 2px solid #008000;
 }
 
-.warning {
-    text-align: center;
-    background: #fdd;
-    padding: .5em;
-    margin: 1em 0 1em 0;
-    border: 2px solid #b80000;
-}
-
 #edit-warning-overlay{
     display: block;
     position: fixed;
@@ -52,10 +44,14 @@
     background-color: rgba(255, 255, 255, 0.7);
 }
 
-.warning.edit-warning-infobox{
+.edit-warning-infobox{
     position: absolute;
     left: 50%;
     top: 50%;
     width: 700px;
     margin: -100px 0 0 -350px;
+    text-align: center;
+    background: #fdd;
+    padding: .5em;
+    border: 2px solid #b80000;
 }

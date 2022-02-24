@@ -65,24 +65,24 @@ jobs:
           tail -n5 ${{ env.MW_INST_PATH }}/LocalSettings.php
           php ${{ env.MW_INST_PATH }}/maintenance/update.php --quick
 
-      # - name: Run Tests
-      #   run: >
-      #     php ${{ env.MW_INST_PATH }}/tests/phpunit/phpunit.php
-      #     --configuration ${{ env.MW_EXT_PATH }}/${{ env.EXT_NAME }}
-      #     --testdox
-      #   if: matrix.coverage == false
+      - name: Run Tests
+        run: >
+          php ${{ env.MW_INST_PATH }}/tests/phpunit/phpunit.php
+          --configuration ${{ env.MW_EXT_PATH }}/${{ env.EXT_NAME }}
+          --testdox
+        if: matrix.coverage == false
 
-      # - name: Run Tests With Coverage
-      #   run: >
-      #     php ${{ env.MW_INST_PATH }}/tests/phpunit/phpunit.php
-      #     --configuration ${{ env.MW_EXT_PATH }}/${{ env.EXT_NAME }}
-      #     --testdox
-      #     --coverage-clover ${{ env.MW_INST_PATH }}/docs/coverage.xml
-      #   if: matrix.coverage == true
+      - name: Run Tests With Coverage
+        run: >
+          php ${{ env.MW_INST_PATH }}/tests/phpunit/phpunit.php
+          --configuration ${{ env.MW_EXT_PATH }}/${{ env.EXT_NAME }}
+          --testdox
+          --coverage-clover ${{ env.MW_INST_PATH }}/docs/coverage.xml
+        if: matrix.coverage == true
 
-      # - name: Upload code coverage
-      #   uses: codecov/codecov-action@v2
-      #   with:
-      #     token: ${{ secrets.CODECOV_TOKEN }}
-      #     files: ${{ env.MW_INST_PATH }}/docs/coverage.xml
-      #   if: matrix.coverage == true
+      - name: Upload code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ env.MW_INST_PATH }}/docs/coverage.xml
+        if: matrix.coverage == true

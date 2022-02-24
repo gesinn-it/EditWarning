@@ -63,7 +63,7 @@ class EditWarningLock {
         $this->setUserID( $db_row['user_id'] );
         $this->setUserName( $db_row['user_name'] );
         $this->setSection( $db_row['section'] );
-        $this->setTimestamp( $db_row['timestamp'] );
+        $this->setTimestamp( $db_row['lock_timestamp'] );
     }
 
     /**

@@ -334,6 +334,11 @@ EOT;
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$dir = $GLOBALS['wgExtensionDirectory'] . '/EditWarning/sql/';
 
+		// For Sqlite it is not possible to name a column 'timestamp' (see
+		// DatabaseSqlite->replaceVars); a pragmatic approach to rename the column in existing
+		// databases is to drop and create the table. The loss of data in this case is OK due to its
+		// temporary nature.
+		$updater->dropExtensionTable( 'editwarning_locks', $dir . 'editwarning_locks_drop.sql' );
 		$updater->addExtensionTable( 'editwarning_locks', $dir . 'editwarning_locks_create.sql' );
 		$updater->addExtensionTable( 'editwarning_locks', $dir . 'editwarning_locks_alter.sql' );
 

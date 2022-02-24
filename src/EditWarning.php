@@ -101,7 +101,7 @@ class EditWarning {
 		global $wgTS_Current;
         // Build conditions for select operation.
         $conditions  = sprintf( "`article_id` = '%s'", $this->getArticleID() );
-        $conditions .= sprintf( " AND `timestamp` >= '%s'", $this->getTimestamp( $wgTS_Current ) );
+        $conditions .= sprintf( " AND `lock_timestamp` >= '%s'", $this->getTimestamp( $wgTS_Current ) );
         $result = $dbr->select( "editwarning_locks", "*", $conditions );
 
         // Create lock objects for every valid lock.
@@ -126,7 +126,7 @@ class EditWarning {
         $timeout = $wgEditWarning_Timeout;
 
         switch ( $type ) {
-            case $wgTS_Timeout: 
+            case $wgTS_Timeout:
                 return mktime( date("H"), date("i") + $timeout, date("s"), date("m"), date("d"), date("Y") );
                 break;
             case $wgTS_Current:
@@ -230,7 +230,7 @@ class EditWarning {
         } else {
             $section_locks = array_merge($this->_locks['section']['user']['obj'], $this->_locks['section']['other']['obj']);
         }
-        
+
         foreach( $section_locks as $lock) {
             if ($this->_section == $lock->getSection()) {
                 return $lock;
@@ -257,7 +257,7 @@ class EditWarning {
     public function getSectionLocksByOtherCount() {
         return $this->_locks['section']['other']['count'];
     }
-    
+
     /**
      * Checks if there is any valid article lock.
      *
@@ -376,7 +376,7 @@ class EditWarning {
             return false;
         }
     }
-   
+
     /**
      * Create EditWarningLock object and add it to _locks array.
      *
@@ -417,7 +417,7 @@ class EditWarning {
             'user_id'    => $this->_user_id,
             'user_name'  => $this->_user_name,
             'article_id' => $this->_article_id,
-            'timestamp'  => $this->getTimestamp( $wgTS_Timeout ),
+            'lock_timestamp'  => $this->getTimestamp( $wgTS_Timeout ),
             'section'    => $section
         );
         $dbw->insert( "editwarning_locks", $values );
@@ -433,7 +433,7 @@ class EditWarning {
      */
     public function updateLock( $dbw, $section = 0 ) {
 		global $wgTS_Timeout;
-        $value      = array( "timestamp" => $this->getTimestamp( $wgTS_Timeout ) );
+        $value      = array( "lock_timestamp" => $this->getTimestamp( $wgTS_Timeout ) );
         $conditions = array(
             'user_id'    => $this->_user_id,
             'article_id' => $this->_article_id,

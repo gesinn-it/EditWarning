@@ -123,7 +123,7 @@ class EditWarning {
      * are used to get all locks with valid timestamp.
      *
      * @access public
-     * @param  int $type Which type of timestamp should be created. Use TIMESTAMP_NEW
+     * @param int $type Which type of timestamp should be created. Use TIMESTAMP_NEW
      *                   or TIMESTAMP_EXPIRED constant.
      * @return int Unix timestamp.
      */

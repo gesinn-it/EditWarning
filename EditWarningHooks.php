@@ -111,8 +111,6 @@ EOT;
 		unset( $msg );
 	}
 
-
-
 	/**
 	 * Action on article editing
 	 *

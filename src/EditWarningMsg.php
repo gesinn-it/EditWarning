@@ -38,6 +38,7 @@ class EditWarningMsg implements EditWarningMsgFactory {
     private function __construct() {
 
     }
+
     private function __clone() {
 
     }

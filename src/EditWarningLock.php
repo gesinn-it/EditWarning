@@ -60,10 +60,10 @@ class EditWarningLock {
 
     public function __construct($parent, $db_row) {
         $this->setParent( $parent );
-        $this->setUserID( $db_row['user_id'] );
-        $this->setUserName( $db_row['user_name'] );
-        $this->setSection( $db_row['section'] );
-        $this->setTimestamp( $db_row['lock_timestamp'] );
+        $this->setUserID( $db_row->user_id );
+        $this->setUserName( $db_row->user_name );
+        $this->setSection( $db_row->section );
+        $this->setTimestamp( $db_row->lock_timestamp );
     }
 
     /**

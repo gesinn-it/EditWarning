@@ -100,12 +100,19 @@ class EditWarning {
     public function load( $dbr ) {
 		global $wgTS_Current;
         // Build conditions for select operation.
-        $conditions  = sprintf( "`article_id` = '%s'", $this->getArticleID() );
-        $conditions .= sprintf( " AND `lock_timestamp` >= '%s'", $this->getTimestamp( $wgTS_Current ) );
-        $result = $dbr->select( "editwarning_locks", "*", $conditions );
 
-        // Create lock objects for every valid lock.
-        while ( $row = $dbr->fetchRow( $result ) ) {
+        $conditions = [
+            'article_id' => $this->getArticleID(),
+            'lock_timestamp >= ' . $dbr->addQuotes($this->getTimestamp($wgTS_Current))
+        ];
+
+        $result = $dbr->select(
+            "editwarning_locks",
+            "*",
+            $conditions
+        );
+
+        foreach ( $result as $row ) {
             $this->addLock($this, $row);
         }
     }
@@ -382,13 +389,13 @@ class EditWarning {
      *
      * @access public
      * @param mixed $parent Reference to EditWarning class.
-     * @param array $db_row Values of one database result row.
+     * @param object $db_row Values of one database result row.
      */
     private function addLock( $parent, $db_row ) {
         $lock = new EditWarningLock( $parent, $db_row );
         $this->_locks['count']++;
 
-        if ( $lock->getSection() == 0) {
+        if ( $lock->getSection() != 0) {
             $this->_locks['article'] = $lock;
         } else {
             $this->_locks['section']['count']++;

@@ -1,5 +1,6 @@
 <?php
 namespace EditWarning;
+
 /**
  * Implementation of EditWarningLock class.
  *

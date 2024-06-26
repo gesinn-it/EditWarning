@@ -1,8 +1,6 @@
 <?php
 namespace EditWarning;
 
-use \EditWarning\EditWarning;
-use \EditWarning\EditWarningMsg;
 use OutputPage;
 use Skin;
 use DatabaseUpdater;

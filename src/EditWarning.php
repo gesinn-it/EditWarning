@@ -1,7 +1,6 @@
 <?php
 namespace EditWarning;
 //use \EditWarning\InvalidTypeArgumentException;
-use \EditWarning\EditWarningLock;
 
 /**
  * Implementation of EditWarning class.

@@ -56,7 +56,7 @@ EOT;
 	private function showInfoMsg( $msgtype, $timestamp, $cancel_url ) {
 		global $wgEditWarning_ShowInfoBox, $wgType_Article;
 
-		if($wgEditWarning_ShowInfoBox){
+		if($wgEditWarning_ShowInfoBox) {
 			$type = ( $msgtype == $wgType_Article ) ? "ArticleNotice" : "SectionNotice";
 
 			// Show info message with updated timestamp.

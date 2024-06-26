@@ -23,7 +23,7 @@ class EditWarningApi extends ApiBase {
 		$ew->setArticleID( $articleID );
 
 		// If the Lock should be related to a certain section
-		if($sectionID !== null){
+		if($sectionID !== null) {
 			$ew->setSection( $sectionID );
 		}
 

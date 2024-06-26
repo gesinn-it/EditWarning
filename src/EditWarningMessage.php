@@ -101,7 +101,7 @@ abstract class EditWarningMessage {
     public function show( $type ) {
         global $wgOut;
 
-        if($type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning"){
+        if($type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning") {
 
         	// Add HTML for overlay
 			$wgOut->addHTML('<div id="edit-warning-overlay"></div>');

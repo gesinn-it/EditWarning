@@ -135,10 +135,8 @@ class EditWarning {
         switch ( $type ) {
             case $wgTS_Timeout:
                 return mktime( date("H"), date("i") + $timeout, date("s"), date("m"), date("d"), date("Y") );
-                break;
             case $wgTS_Current:
                 return mktime( date("H"), date("i") , date("s"), date("m"), date("d"), date("Y") );
-                break;
 			default:
 				throw new \InvalidArgumentException("Invalid argument for type. Use TIMESTAMP_NEW or TIMESTAMP_EXPIRED constant.");
         }

@@ -80,9 +80,9 @@ class EditWarning {
 
     /**
      * @access public
-     * @param int $user_id ID of the current user.
-     * @param int $article_id ID of the current article (optional).
-     * @param int $section ID of the current section (optional).
+     * @param int|null $user_id ID of the current user.
+     * @param int|null $article_id ID of the current article (optional).
+     * @param int|null $section ID of the current section (optional).
      */
     public function __construct( $user_id = null, $article_id = null, $section = null ) {
         $this->setUserID( $user_id );

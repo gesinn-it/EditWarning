@@ -1,6 +1,5 @@
 <?php
 namespace EditWarning;
-use SMW\MediaWiki\PermissionManager;
 use Exception;
 
 /**

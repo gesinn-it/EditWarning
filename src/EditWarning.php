@@ -2,7 +2,6 @@
 namespace EditWarning;
 //use \EditWarning\InvalidTypeArgumentException;
 use \EditWarning\EditWarningLock;
-use Psr\Log\InvalidArgumentException;
 
 /**
  * Implementation of EditWarning class.

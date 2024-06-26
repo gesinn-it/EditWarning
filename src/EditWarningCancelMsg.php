@@ -1,6 +1,7 @@
 <?php
 namespace EditWarning;
 use EditWarning\EditWariningMessage;
+
 /**
  * Implementation of EditWarningCancelMsg class.
  *

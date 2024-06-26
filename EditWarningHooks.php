@@ -3,7 +3,9 @@ namespace EditWarning;
 
 use \EditWarning\EditWarning;
 use \EditWarning\EditWarningMsg;
-use OutputPage, Skin, DatabaseUpdater;
+use OutputPage;
+use Skin;
+use DatabaseUpdater;
 
 class EditWarningHooks {
 

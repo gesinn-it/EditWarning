@@ -58,7 +58,7 @@ class EditWarningLock {
      */
     private $timestamp;
 
-    public function __construct( $parent, $db_row) {
+    public function __construct( $parent, $db_row ) {
         $this->setParent( $parent );
         $this->setUserID( $db_row->user_id );
         $this->setUserName( $db_row->user_name );

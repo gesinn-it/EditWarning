@@ -170,7 +170,7 @@ class EditWarning {
      * @access public
      * @param string $user_name Name of the current user.
      */
-    public function setUserName($user_name) {
+    public function setUserName( $user_name) {
         $this->_user_name = $user_name;
     }
 
@@ -374,7 +374,7 @@ class EditWarning {
      * @access public
      * @return bool Return boolean value
      */
-    public function isSectionLockedByUser($sectionLock) {
+    public function isSectionLockedByUser( $sectionLock) {
         if ( $sectionLock->getUserID() == $this->getUserID() ) {
             return true;
         } else {

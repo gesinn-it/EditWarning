@@ -99,7 +99,7 @@ abstract class EditWarningMessage {
      *
      * @access public
      */
-    public function show($type) {
+    public function show( $type) {
         global $wgOut;
 
         if($type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning"){

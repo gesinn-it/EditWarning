@@ -224,7 +224,7 @@ class EditWarning {
      * @return object Returns the EditWarningLock object for the section or false.
      */
     public function getSectionLock() {
-        if ($this->_locks['section']['count'] = 0) {
+        if ($this->_locks['section']['count'] == 0) {
             return false;
         }
 

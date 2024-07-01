@@ -120,7 +120,6 @@ EOT;
 	 * @return boolean|int It returns a constant int if it runs in unit test
 	 *                     environment, else true.
 	 */
-
 	public static function edit( OutputPage $out, Skin $skin ) {
 		global $wgRequest, $wgPHP_SELF, $wgTS_Timeout, $wgType_Article,
 		$wgType_Article_Section_Conflict, $wgType_Section;
@@ -348,10 +347,11 @@ EOT;
 	/**
 	 * Action if article is saved / canceled.
 	 *
-	 * @param
+	 * @param EditWarning $ew
+	 * @param WikiPage $wikiPage WikiPage object.
+	 * @param User $user object.
 	 * @return boolean Returns always true.
 	 */
-
 	private function removeWarning( $ew, $wikiPage, $user ) {
 		// Abort on nonexisting pages or anonymous users.
 

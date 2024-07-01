@@ -30,31 +30,31 @@ namespace EditWarning;
 
 class EditWarningLock {
 	/**
-	 * @access private
+	 *
 	 * @var mixed Contains the reference to parent class.
 	 */
 	private $_parent;
 
 	/**
-	 * @access private
+	 *
 	 * @var int Contains the Id of the user of the lock.
 	 */
 	private $_user_id;
 
 	/**
-	 * @access private
+	 *
 	 * @var string Contains the name of the user of the lock.
 	 */
 	private $_user_name;
 
 	/**
-	 * @access private
+	 *
 	 * @var int Contains the Id of the section of the lock.
 	 */
 	private $_section = 0;
 
 	/**
-	 * @access private
+	 *
 	 * @var int Contains the unix timestamp of the lock.
 	 */
 	private $timestamp;
@@ -68,7 +68,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return mixed Reference to parent class.
 	 */
 	public function getParent() {
@@ -76,7 +76,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param mixed $parent Reference to parent class.
 	 */
 	public function setParent( $parent ) {
@@ -84,7 +84,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Id of the user of the lock.
 	 */
 	public function getUserID() {
@@ -92,7 +92,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $user_id Id of the user of the lock.
 	 */
 	public function setUserID( $user_id ) {
@@ -100,7 +100,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return string Name of the user of the lock.
 	 */
 	public function getUserName() {
@@ -108,7 +108,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param string $user_name Name of the user of the lock.
 	 */
 	public function setUserName( $user_name ) {
@@ -116,7 +116,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Id of the section of the lock.
 	 */
 	public function getSection() {
@@ -124,7 +124,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $section Id of the section of the lock.
 	 */
 	public function setSection( $section ) {
@@ -132,7 +132,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Unix timestamp of the lock.
 	 */
 	public function getTimestamp() {
@@ -140,7 +140,7 @@ class EditWarningLock {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $timestamp Unix timestamp of the lock.
 	 */
 	public function setTimestamp( $timestamp ) {

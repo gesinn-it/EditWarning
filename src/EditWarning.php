@@ -77,7 +77,7 @@ class EditWarning {
 	];
 
 	/**
-	 * @access public
+	 *
 	 * @param int|null $user_id ID of the current user.
 	 * @param int|null $article_id ID of the current article (optional).
 	 * @param int|null $section ID of the current section (optional).
@@ -92,7 +92,7 @@ class EditWarning {
 	 * Recieves data from database sets object values and creates
 	 * lock objects.
 	 *
-	 * @access public
+	 *
 	 * @param object $dbr Database connection object.
 	 */
 	public function load( $dbr ) {
@@ -120,7 +120,7 @@ class EditWarning {
 	 * Future timestamps are used for new and updated article locks, past timestamps
 	 * are used to get all locks with valid timestamp.
 	 *
-	 * @access public
+	 *
 	 * @param int $type Which type of timestamp should be created. Use TIMESTAMP_NEW
 	 *                   or TIMESTAMP_EXPIRED constant.
 	 * @return int Unix timestamp.
@@ -145,7 +145,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Id of the current user.
 	 */
 	public function getUserID() {
@@ -153,7 +153,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $user_id Id of the current user.
 	 */
 	public function setUserID( $user_id ) {
@@ -161,7 +161,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return string Name of the current user.
 	 */
 	public function getUserName() {
@@ -169,7 +169,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param string $user_name Name of the current user.
 	 */
 	public function setUserName( $user_name ) {
@@ -177,7 +177,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Id of the current article.
 	 */
 	public function getArticleID() {
@@ -185,7 +185,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $article_id Id of the current article.
 	 */
 	public function setArticleID( $article_id ) {
@@ -193,7 +193,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @return int Id of the current section.
 	 */
 	public function getSection() {
@@ -201,7 +201,7 @@ class EditWarning {
 	}
 
 	/**
-	 * @access public
+	 *
 	 * @param int $section Id of the current section.
 	 */
 	public function setSection( $section ) {
@@ -211,7 +211,7 @@ class EditWarning {
 	/**
 	 * Returns the article lock.
 	 *
-	 * @access public
+	 *
 	 * @return object Returns the EditWarningLock object for the article.
 	 */
 	public function getArticleLock() {
@@ -221,7 +221,7 @@ class EditWarning {
 	/**
 	 * Returns the EditWarningLock object for a certain section.
 	 *
-	 * @access public
+	 *
 	 * @param int Section ID
 	 * @return object Returns the EditWarningLock object for the section or false.
 	 */
@@ -249,7 +249,7 @@ class EditWarning {
 	/**
 	 * Returns all section locks of other users.
 	 *
-	 * @access public
+	 *
 	 * @return mixed Returns all section locks of other users.
 	 */
 	public function getSectionLocksByOther() {
@@ -259,7 +259,7 @@ class EditWarning {
 	/**
 	 * Returns the count of all section locks by other users.
 	 *
-	 * @access public
+	 *
 	 * @return int Count of all section locks by other users.
 	 */
 	public function getSectionLocksByOtherCount() {
@@ -269,7 +269,7 @@ class EditWarning {
 	/**
 	 * Checks if there is any valid article lock.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if there is at least one lock, else false.
 	 */
 	public function anyLock() {
@@ -283,7 +283,7 @@ class EditWarning {
 	/**
 	 * Checks if there is a lock for the whole article.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if there is an article lock.
 	 */
 	public function isArticleLocked() {
@@ -297,7 +297,7 @@ class EditWarning {
 	/**
 	 * Checks if the article lock is by the current user.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if the article lock is by the user.
 	 */
 	public function isArticleLockedByUser() {
@@ -313,7 +313,7 @@ class EditWarning {
 	/**
 	 * Checks if there is a section lock for any section of the article.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if there is a section lock.
 	 */
 	public function anySectionLocks() {
@@ -327,7 +327,7 @@ class EditWarning {
 	/**
 	 * Checks if there is a section lock for a specific section of the article.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if the section is locked.
 	 */
 	public function isSectionLocked() {
@@ -346,7 +346,7 @@ class EditWarning {
 	 * Checks if there is a section lock for the article by the
 	 * current user.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if there is at least one section lock.
 	 */
 	public function anySectionLocksByUser() {
@@ -360,7 +360,7 @@ class EditWarning {
 	/**
 	 * Checks if there is a section lock for the article by other users.
 	 *
-	 * @access public
+	 *
 	 * @return bool Returns true if there is at least one section lock.
 	 */
 	public function anySectionLocksByOthers() {
@@ -374,7 +374,7 @@ class EditWarning {
 	/**
 	 * Checks if the given section lock is by the current user.
 	 *
-	 * @access public
+	 *
 	 * @return bool Return boolean value
 	 */
 	public function isSectionLockedByUser( $sectionLock ) {
@@ -388,7 +388,7 @@ class EditWarning {
 	/**
 	 * Create EditWarningLock object and add it to _locks array.
 	 *
-	 * @access public
+	 *
 	 * @param mixed $parent Reference to EditWarning class.
 	 * @param object $db_row Values of one database result row.
 	 */
@@ -415,7 +415,7 @@ class EditWarning {
 	 * Saves a new lock into the database.
 	 * !!! "page_props" is not an alternative as it requires the Parser that is not available in hook BeforePageDisplay
 	 *
-	 * @access public
+	 *
 	 * @param object $dbw MediaWiki write connection object.
 	 * @param int $section Id of the current section (0 for no section).
 	 */
@@ -434,7 +434,7 @@ class EditWarning {
 	/**
 	 * Update the timestamp of a lock.
 	 *
-	 * @access public
+	 *
 	 * @see getTimestamp()
 	 * @param object $dbw MediaWiki write connection object.
 	 * @param int $section Id of the current section (0 for no section).
@@ -453,7 +453,7 @@ class EditWarning {
 	/**
 	 * Removes a lock from the databse.
 	 *
-	 * @access public
+	 *
 	 * @param object $dbw MediaWiki write connection object.
 	 * @param int $section Id of the current section (0 for no section).
 	 */
@@ -468,7 +468,7 @@ class EditWarning {
 	/**
 	 * Remove all locks of an user from the database.
 	 *
-	 * @access public
+	 *
 	 */
 	public function removeUserLocks( $dbw ) {
 		$condition = [ 'user_id' => $this->_user_id ];

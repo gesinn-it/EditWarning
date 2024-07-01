@@ -72,7 +72,7 @@ abstract class EditWarningMessage {
 	/**
 	 * Replaces labels in template content with associated values.
 	 *
-	 * @access public
+	 *
 	 */
 	public function processTemplate() {
 		$content = $this->getContent();
@@ -95,7 +95,7 @@ abstract class EditWarningMessage {
 	/**
 	 * Output the HTML code.
 	 *
-	 * @access public
+	 *
 	 */
 	public function show( $type ) {
 		global $wgOut;

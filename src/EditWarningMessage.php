@@ -65,7 +65,7 @@ abstract class EditWarningMessage {
 		try {
 			$file = fopen( $file_name, "r" );
 			$this->setContent( fread( $file, filesize( $file_name ) ) );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			throw new Exception( $e );
 		}
 		fclose( $file );
@@ -83,7 +83,7 @@ abstract class EditWarningMessage {
 			throw new Exception( "No template content found. You should load a template first." );
 		}
 
-		foreach( $this->getLabels() as $label => $value ) {
+		foreach ( $this->getLabels() as $label => $value ) {
 			$content = preg_replace(
 					"/{{{" . $label . "}}}/",
 					$value,
@@ -102,7 +102,7 @@ abstract class EditWarningMessage {
 	public function show( $type ) {
 		global $wgOut;
 
-		if( $type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning" ) {
+		if ( $type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning" ) {
 
 			// Add HTML for overlay
 			$wgOut->addHTML( '<div id="edit-warning-overlay"></div>' );

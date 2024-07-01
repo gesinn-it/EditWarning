@@ -235,7 +235,7 @@ class EditWarning {
 			$section_locks = array_merge( $this->_locks['section']['user']['obj'], $this->_locks['section']['other']['obj'] );
 		}
 
-		foreach( $section_locks as $lock ) {
+		foreach ( $section_locks as $lock ) {
 			if ( $this->_section == $lock->getSection() ) {
 				return $lock;
 			}

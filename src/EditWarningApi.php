@@ -23,7 +23,7 @@ class EditWarningApi extends ApiBase {
 		$ew->setArticleID( $articleID );
 
 		// If the Lock should be related to a certain section
-		if( $sectionID !== null ) {
+		if ( $sectionID !== null ) {
 			$ew->setSection( $sectionID );
 		}
 
@@ -43,8 +43,7 @@ class EditWarningApi extends ApiBase {
 
 			$this->getResult()->addValue( 'success', $this->getModuleName(), $output );
 
-		}
-		catch ( Exception $e ) {
+		} catch ( Exception $e ) {
 			$error = array(
 				'code' => 'api_exception',
 				'info' => $e->getMessage(),

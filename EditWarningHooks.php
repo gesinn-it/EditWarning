@@ -18,7 +18,8 @@ class EditWarningHooks {
 			<p>To install this extension, put the following line in LocalSettings.php:\n
 			<pre>require_once "\$IP/extensions/EditWarning/EditWarning.php";</pre></p>\n\n
 			
-			<p>See <a href="http://www.mediawiki.org/wiki/Extension:EditWarning/0.4">http://www.mediawiki.org/wiki/Extension:EditWarning/0.4</a> for more information.</p>
+			<p>See <a href="http://www.mediawiki.org/wiki/Extension:EditWarning/0.4">
+			http://www.mediawiki.org/wiki/Extension:EditWarning/0.4</a> for more information.</p>
 EOT;
 			exit( 1 );
 		}
@@ -135,7 +136,9 @@ EOT;
 
 		$wgRequest = $out->getRequest();
 
-		if ( $wgRequest->getVal( 'action' ) === 'edit' || $wgRequest->getVal( 'action' ) === 'formedit' || $wgRequest->getVal( 'veaction' ) === 'edit' ) {
+		if ( $wgRequest->getVal( 'action' ) === 'edit' ||
+			$wgRequest->getVal( 'action' ) === 'formedit' ||
+			$wgRequest->getVal( 'veaction' ) === 'edit' ) {
 
 			// Abort on nonexisting pages
 			if ( $out->getTitle()->getArticleID() < 1 ) {
@@ -157,7 +160,8 @@ EOT;
 			if ( $out->getTitle()->getNamespace() == 'NS_MAIN' ) {
 				$article_title = $out->getTitle()->getPartialURL();
 			} else {
-				$article_title = $article_title = $out->getTitle()->getNsText() . ":" . $article_title = $out->getTitle()->getPartialURL();
+				$article_title = $article_title =
+				$out->getTitle()->getNsText() . ":" . $article_title = $out->getTitle()->getPartialURL();
 			}
 
 			$url = $wgPHP_SELF . "?title=" . $article_title . "&cancel=true";

@@ -15,7 +15,7 @@ class EditWarningApi extends ApiBase {
 		$sectionID = $this->getMain()->getVal( 'section' );
 		$user = User::newFromName( $this->getMain()->getVal( 'user' ) );
 
-		//Create EditWarning Object of current user and article ID.
+		// Create EditWarning Object of current user and article ID.
 		$ew = new EditWarning();
 		$ew->setUserID( $user->getId() );
 		$ew->setUserName( $user->getName() );

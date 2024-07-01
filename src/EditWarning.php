@@ -1,7 +1,7 @@
 <?php
 namespace EditWarning;
 
-//use \EditWarning\InvalidTypeArgumentException;
+// use \EditWarning\InvalidTypeArgumentException;
 
 /**
  * Implementation of EditWarning class.

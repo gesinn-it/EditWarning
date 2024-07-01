@@ -151,7 +151,7 @@ EOT;
 			$ew->setUserName( $user->getName() );
 			$ew->setArticleID( $out->getTitle()->getArticleID() );
 			$section = $hook->getSection();
-			$msg_params = array();
+			$msg_params = [];
 
 			// Get article title for cancel button
 			if ( $out->getTitle()->getNamespace() == 'NS_MAIN' ) {

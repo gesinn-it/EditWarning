@@ -33,7 +33,7 @@ use Exception;
 
 abstract class EditWarningMessage {
 	private $_content;
-	private $_labels = array();
+	private $_labels = [];
 
 	public function setContent( $content ) {
 		$this->_content = $content;

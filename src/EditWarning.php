@@ -60,21 +60,21 @@ class EditWarning {
 	 * @access private
 	 * @var mixed Contains locks and metadata about them.
 	 */
-	private $_locks = array(
+	private $_locks = [
 		'count' => 0,
 		'article' => null,
-		'section' => array(
+		'section' => [
 			'count' => 0,
-			'user' => array(
+			'user' => [
 				'count' => 0,
-				'obj' => array()
-			),
-			'other' => array(
+				'obj' => []
+			],
+			'other' => [
 				'count' => 0,
-				'obj' => array()
-			)
-		)
-	);
+				'obj' => []
+			]
+		]
+	];
 
 	/**
 	 * @access public
@@ -416,13 +416,13 @@ class EditWarning {
 	 */
 	public function saveLock( $dbw, $section = 0 ) {
 		global $wgTS_Timeout;
-		$values = array(
+		$values = [
 			'user_id'    => $this->_user_id,
 			'user_name'  => $this->_user_name,
 			'article_id' => $this->_article_id,
 			'lock_timestamp'  => $this->getTimestamp( $wgTS_Timeout ),
 			'section'    => $section
-		);
+		];
 		$dbw->insert( "editwarning_locks", $values );
 	}
 
@@ -436,12 +436,12 @@ class EditWarning {
 	 */
 	public function updateLock( $dbw, $section = 0 ) {
 		global $wgTS_Timeout;
-		$value      = array( "lock_timestamp" => $this->getTimestamp( $wgTS_Timeout ) );
-		$conditions = array(
+		$value      = [ "lock_timestamp" => $this->getTimestamp( $wgTS_Timeout ) ];
+		$conditions = [
 			'user_id'    => $this->_user_id,
 			'article_id' => $this->_article_id,
 			'section'    => $section
-		);
+		];
 		$dbw->update( "editwarning_locks", $value, $conditions );
 	}
 
@@ -453,10 +453,10 @@ class EditWarning {
 	 * @param int $section Id of the current section (0 for no section).
 	 */
 	public function removeLock( $dbw, $section = 0 ) {
-		$conditions = array(
+		$conditions = [
 			'user_id'    => $this->_user_id,
 			'article_id' => $this->_article_id
-		);
+		];
 		$dbw->delete( "editwarning_locks", $conditions );
 	}
 
@@ -466,7 +466,7 @@ class EditWarning {
 	 * @access public
 	 */
 	public function removeUserLocks( $dbw ) {
-		$condition = array( 'user_id' => $this->_user_id );
+		$condition = [ 'user_id' => $this->_user_id ];
 		$dbw->delete( "editwarning_locks", $condition );
 	}
 }

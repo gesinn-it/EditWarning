@@ -33,7 +33,7 @@ namespace EditWarning;
  * Singleton factory for EditWarningMessage subclasses.
  */
 class EditWarningMsg implements EditWarningMsgFactory {
-	private static $instance = array();
+	private static $instance = [];
 
 	private function __construct() {
 	}

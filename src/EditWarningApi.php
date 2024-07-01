@@ -43,10 +43,10 @@ class EditWarningApi extends ApiBase {
 			$this->getResult()->addValue( 'success', $this->getModuleName(), $output );
 
 		} catch ( Exception $e ) {
-			$error = array(
+			$error = [
 				'code' => 'api_exception',
 				'info' => $e->getMessage(),
-			);
+			];
 			$this->getResult()->addValue( 'error', $this->getModuleName(), $error );
 		}
 	}

@@ -30,9 +30,9 @@ namespace EditWarning;
  */
 
 class EditWarningWarnMsg extends EditWarningMessage {
-    public function __construct( $path, $url ) {
-        $this->loadTemplate( $path . "/warning.html" );
-        $this->addLabel( 'URL', $url );
-        $this->addLabelMsg( 'BUTTON_CANCEL', 'ew-button-cancel' );
-    }
+	public function __construct( $path, $url ) {
+		$this->loadTemplate( $path . "/warning.html" );
+		$this->addLabel( 'URL', $url );
+		$this->addLabelMsg( 'BUTTON_CANCEL', 'ew-button-cancel' );
+	}
 }

@@ -29,5 +29,5 @@ namespace EditWarning;
  */
 
 interface EditWarningMsgFactory {
-    public static function getInstance( $type, $url = null, $params = null );
+	public static function getInstance( $type, $url = null, $params = null );
 }

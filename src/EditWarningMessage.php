@@ -34,85 +34,85 @@ use Exception;
 
 
 abstract class EditWarningMessage {
-    private $_content;
-    private $_labels = array();
+	private $_content;
+	private $_labels = array();
 
-    public function setContent( $content ) {
-        $this->_content = $content;
-    }
+	public function setContent( $content ) {
+		$this->_content = $content;
+	}
 
-    public function getContent() {
-        return $this->_content;
-    }
+	public function getContent() {
+		return $this->_content;
+	}
 
-    public function addLabelMsg( $label, $msgkey ) {
-        $this->_labels[$label] = wfMessage( $msgkey )->text();
-    }
+	public function addLabelMsg( $label, $msgkey ) {
+		$this->_labels[$label] = wfMessage( $msgkey )->text();
+	}
 
-    public function addLabel( $label, $value ) {
-        $this->_labels[$label] = $value;
-    }
+	public function addLabel( $label, $value ) {
+		$this->_labels[$label] = $value;
+	}
 
-    public function setMsg( $msg, $params ) {
-        $this->_labels['MSG'] = wfMessage( $msg )->rawParams( $params )->plain();
-    }
+	public function setMsg( $msg, $params ) {
+		$this->_labels['MSG'] = wfMessage( $msg )->rawParams( $params )->plain();
+	}
 
-    public function getLabels() {
-        return $this->_labels;
-    }
+	public function getLabels() {
+		return $this->_labels;
+	}
 
-    public function loadTemplate( $file_name ) {
-        try {
-            $file = fopen( $file_name, "r" );
-            $this->setContent( fread( $file, filesize( $file_name ) ) );
-        } catch( Exception $e ) {
-            throw new Exception( $e );
-        }
-        fclose( $file );
-    }
+	public function loadTemplate( $file_name ) {
+		try {
+			$file = fopen( $file_name, "r" );
+			$this->setContent( fread( $file, filesize( $file_name ) ) );
+		} catch( Exception $e ) {
+			throw new Exception( $e );
+		}
+		fclose( $file );
+	}
 
-    /**
-     * Replaces labels in template content with associated values.
-     *
-     * @access public
-     */
-    public function processTemplate() {
-        $content = $this->getContent();
+	/**
+	 * Replaces labels in template content with associated values.
+	 *
+	 * @access public
+	 */
+	public function processTemplate() {
+		$content = $this->getContent();
 
-        if ( $content == null ) {
+		if ( $content == null ) {
 			throw new Exception( "No template content found. You should load a template first." );
-        }
+		}
 
-        foreach( $this->getLabels() as $label => $value ) {
-            $content = preg_replace(
-                    "/{{{" . $label . "}}}/",
-                    $value,
-                    $content
-            );
-        }
+		foreach( $this->getLabels() as $label => $value ) {
+			$content = preg_replace(
+					"/{{{" . $label . "}}}/",
+					$value,
+					$content
+			);
+		}
 
-        return $content;
-    }
+		return $content;
+	}
 
-    /**
-     * Output the HTML code.
-     *
-     * @access public
-     */
-    public function show( $type ) {
-        global $wgOut;
+	/**
+	 * Output the HTML code.
+	 *
+	 * @access public
+	 */
+	public function show( $type ) {
+		global $wgOut;
 
-        if( $type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning" ) {
+		if( $type === "ArticleWarning" || $type === "ArticleSectionWarning" || $type === "SectionWarning" ) {
 
-        	// Add HTML for overlay
+			// Add HTML for overlay
 			$wgOut->addHTML( '<div id="edit-warning-overlay"></div>' );
 			$wgOut->addModules( [ 'ext.editwarning.overlay' ] );
 		}
 
-        $content = $this->processTemplate();
-        $wgOut->prependHTML( $content );
+		$content = $this->processTemplate();
+		$wgOut->prependHTML( $content );
 
-    }
+	}
 
 }
 

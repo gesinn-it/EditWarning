@@ -30,8 +30,8 @@ namespace EditWarning;
  */
 
 class EditWarningCancelMsg extends EditWarningMessage {
-    public function __construct( $path ) {
-        $this->loadTemplate( $path . "/canceled.html" );
-        $this->addLabelMsg( 'CANCELED', 'ew-canceled' );
-    }
+	public function __construct( $path ) {
+		$this->loadTemplate( $path . "/canceled.html" );
+		$this->addLabelMsg( 'CANCELED', 'ew-canceled' );
+	}
 }

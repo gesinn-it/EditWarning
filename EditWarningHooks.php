@@ -120,7 +120,7 @@ EOT;
 	 */
 
 	public static function edit( OutputPage $out, Skin $skin ) {
-		global $request, $PHP_SELF, $wgTS_Timeout, $wgType_Article,
+		global $wgRequest, $wgPHP_SELF, $wgTS_Timeout, $wgType_Article,
 		$wgType_Article_Section_Conflict, $wgType_Section;
 
 		$out->addModules( 'ext.editwarning' );
@@ -133,9 +133,9 @@ EOT;
 		$hook = new EditWarningHooks();
 		$ew = new EditWarning();
 
-		$request = $out->getRequest();
+		$wgRequest = $out->getRequest();
 
-		if ( $request->getVal( 'action' ) === 'edit' || $request->getVal( 'action' ) === 'formedit' || $request->getVal( 'veaction' ) === 'edit' ) {
+		if ( $wgRequest->getVal( 'action' ) === 'edit' || $wgRequest->getVal( 'action' ) === 'formedit' || $wgRequest->getVal( 'veaction' ) === 'edit' ) {
 
 			// Abort on nonexisting pages
 			if ( $out->getTitle()->getArticleID() < 1 ) {
@@ -160,7 +160,7 @@ EOT;
 				$article_title = $article_title = $out->getTitle()->getNsText() . ":" . $article_title = $out->getTitle()->getPartialURL();
 			}
 
-			$url = $PHP_SELF . "?title=" . $article_title . "&cancel=true";
+			$url = $wgPHP_SELF . "?title=" . $article_title . "&cancel=true";
 
 			// Check request values
 			if ( $section > 0 ) {

@@ -10,7 +10,7 @@ class EditWarningHooks {
 	/**
 	 * Setup EditWarning extension
 	 *
-	 * @return boolean Returns always true.
+	 * @return bool Returns always true.
 	 */
 	public static function init() {
 		if ( !defined( 'MEDIAWIKI' ) && !defined( 'EDITWARNING_UNITTEST' ) ) {
@@ -117,7 +117,7 @@ EOT;
 	 *
 	 * @param object $editpage Editpage object.
 	 * @param object $ew EditWarning object
-	 * @return boolean|int It returns a constant int if it runs in unit test
+	 * @return bool|int It returns a constant int if it runs in unit test
 	 *                     environment, else true.
 	 */
 	public static function edit( OutputPage $out, Skin $skin ) {
@@ -350,7 +350,7 @@ EOT;
 	 * @param EditWarning $ew
 	 * @param WikiPage $wikiPage WikiPage object.
 	 * @param User $user object.
-	 * @return boolean Returns always true.
+	 * @return bool Returns always true.
 	 */
 	private function removeWarning( $ew, $wikiPage, $user ) {
 		// Abort on nonexisting pages or anonymous users.
@@ -373,7 +373,7 @@ EOT;
 	 * This method is called by the UserLogout hook.
 	 *
 	 * @param user User object.
-	 * @return boolean Returns always true.
+	 * @return bool Returns always true.
 	 *
 	 */
 	public static function logout( $user ) {

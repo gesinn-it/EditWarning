@@ -15,7 +15,7 @@ class EditWarningApiTest extends ApiTestCase {
 			'action' => 'editwarning',
 			'ewaction' => 'lock',
 			'articleid' => 1,
-			'user'=>'Admin'
+			'user' => 'Admin'
 		] );
 		$this->assertEquals( '1', $result[0]['success']['editwarning']['lock']['articleid'] );
 	}
@@ -25,7 +25,7 @@ class EditWarningApiTest extends ApiTestCase {
 			'action' => 'editwarning',
 			'ewaction' => 'unlock',
 			'articleid' => 1,
-			'user'=>'Admin'
+			'user' => 'Admin'
 		] );
 		$this->assertEquals( '1', $result[0]['success']['editwarning']['unlock']['articleid'] );
 	}

@@ -112,5 +112,3 @@ abstract class EditWarningMessage {
 	}
 
 }
-
-

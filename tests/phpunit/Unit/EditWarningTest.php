@@ -1,7 +1,7 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use EditWarning\EditWarning;
+use PHPUnit\Framework\TestCase;
 
 class EditWarningTest extends TestCase {
 

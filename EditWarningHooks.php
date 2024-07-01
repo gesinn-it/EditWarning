@@ -1,9 +1,9 @@
 <?php
 namespace EditWarning;
 
+use DatabaseUpdater;
 use OutputPage;
 use Skin;
-use DatabaseUpdater;
 
 class EditWarningHooks {
 

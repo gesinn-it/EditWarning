@@ -102,7 +102,7 @@ class EditWarning {
 
         $conditions = [
             'article_id' => $this->getArticleID(),
-            'lock_timestamp >= ' . $dbr->addQuotes($this->getTimestamp($wgTS_Current))
+            'lock_timestamp >= ' . $dbr->addQuotes( $this->getTimestamp( $wgTS_Current ) )
         ];
 
         $result = $dbr->select(
@@ -112,7 +112,7 @@ class EditWarning {
         );
 
         foreach ( $result as $row ) {
-            $this->addLock($this, $row);
+            $this->addLock( $this, $row );
         }
     }
 
@@ -133,11 +133,11 @@ class EditWarning {
 
         switch ( $type ) {
             case $wgTS_Timeout:
-                return mktime( date("H"), date("i") + $timeout, date("s"), date("m"), date("d"), date("Y") );
+                return mktime( date( "H" ), date( "i" ) + $timeout, date( "s" ), date( "m" ), date( "d" ), date( "Y" ) );
             case $wgTS_Current:
-                return mktime( date("H"), date("i"), date("s"), date("m"), date("d"), date("Y") );
+                return mktime( date( "H" ), date( "i" ), date( "s" ), date( "m" ), date( "d" ), date( "Y" ) );
 			default:
-				throw new \InvalidArgumentException("Invalid argument for type. Use TIMESTAMP_NEW or TIMESTAMP_EXPIRED constant.");
+				throw new \InvalidArgumentException( "Invalid argument for type. Use TIMESTAMP_NEW or TIMESTAMP_EXPIRED constant." );
         }
     }
 
@@ -223,20 +223,20 @@ class EditWarning {
      * @return object Returns the EditWarningLock object for the section or false.
      */
     public function getSectionLock() {
-        if ($this->_locks['section']['count'] == 0) {
+        if ( $this->_locks['section']['count'] == 0 ) {
             return false;
         }
 
-        if ($this->_locks['section']['user']['count'] == 0) {
+        if ( $this->_locks['section']['user']['count'] == 0 ) {
             $section_locks = $this->_locks['section']['other']['obj'];
-        } elseif ($this->_locks['section']['other']['count'] == 0) {
+        } elseif ( $this->_locks['section']['other']['count'] == 0 ) {
             $section_locks = $this->_locks['section']['user']['obj'];
         } else {
-            $section_locks = array_merge($this->_locks['section']['user']['obj'], $this->_locks['section']['other']['obj']);
+            $section_locks = array_merge( $this->_locks['section']['user']['obj'], $this->_locks['section']['other']['obj'] );
         }
 
-        foreach( $section_locks as $lock) {
-            if ($this->_section == $lock->getSection()) {
+        foreach( $section_locks as $lock ) {
+            if ( $this->_section == $lock->getSection() ) {
                 return $lock;
             }
         }
@@ -269,7 +269,7 @@ class EditWarning {
      * @return bool Returns true if there is at least one lock, else false.
      */
     public function anyLock() {
-        if ($this->_locks['count'] == 0) {
+        if ( $this->_locks['count'] == 0 ) {
             return false;
         } else {
             return true;
@@ -283,7 +283,7 @@ class EditWarning {
      * @return bool Returns true if there is an article lock.
      */
     public function isArticleLocked() {
-        if ($this->_locks['article'] != null) {
+        if ( $this->_locks['article'] != null ) {
             return true;
         } else {
             return false;
@@ -299,7 +299,7 @@ class EditWarning {
     public function isArticleLockedByUser() {
         $lock = $this->_locks['article'];
 
-        if ($lock == false || $lock->getUserID() != $this->getUserID()) {
+        if ( $lock == false || $lock->getUserID() != $this->getUserID() ) {
             return false;
         } else {
             return true;
@@ -313,7 +313,7 @@ class EditWarning {
      * @return bool Returns true if there is a section lock.
      */
     public function anySectionLocks() {
-        if ($this->_locks['section']['count'] > 0) {
+        if ( $this->_locks['section']['count'] > 0 ) {
             return true;
         } else {
             return false;
@@ -327,11 +327,11 @@ class EditWarning {
      * @return bool Returns true if the section is locked.
      */
     public function isSectionLocked() {
-        if ($this->_locks['section']['count'] == 0) {
+        if ( $this->_locks['section']['count'] == 0 ) {
             return false;
         }
 
-        if ($this->getSectionLock($this->_section) == null) {
+        if ( $this->getSectionLock( $this->_section ) == null ) {
             return false;
         } else {
             return true;
@@ -346,7 +346,7 @@ class EditWarning {
      * @return bool Returns true if there is at least one section lock.
      */
     public function anySectionLocksByUser() {
-        if ($this->_locks['section']['user']['count'] > 0) {
+        if ( $this->_locks['section']['user']['count'] > 0 ) {
             return true;
         } else {
             return false;
@@ -360,7 +360,7 @@ class EditWarning {
      * @return bool Returns true if there is at least one section lock.
      */
     public function anySectionLocksByOthers() {
-        if ($this->_locks['section']['other']['count'] > 0) {
+        if ( $this->_locks['section']['other']['count'] > 0 ) {
             return true;
         } else {
             return false;
@@ -392,12 +392,12 @@ class EditWarning {
         $lock = new EditWarningLock( $parent, $db_row );
         $this->_locks['count']++;
 
-        if ( $lock->getSection() != 0) {
+        if ( $lock->getSection() != 0 ) {
             $this->_locks['article'] = $lock;
         } else {
             $this->_locks['section']['count']++;
 
-            if ($lock->getUserID() == $this->_user_id) {
+            if ( $lock->getUserID() == $this->_user_id ) {
                 $this->_locks['section']['user']['count']++;
                 $this->_locks['section']['user']['obj'][] = $lock;
             } else {

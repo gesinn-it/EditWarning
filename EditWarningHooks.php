@@ -56,7 +56,7 @@ EOT;
 	private function showInfoMsg( $msgtype, $timestamp, $cancel_url ) {
 		global $wgEditWarning_ShowInfoBox, $wgType_Article;
 
-		if($wgEditWarning_ShowInfoBox) {
+		if( $wgEditWarning_ShowInfoBox ) {
 			$type = ( $msgtype == $wgType_Article ) ? "ArticleNotice" : "SectionNotice";
 
 			// Show info message with updated timestamp.
@@ -107,7 +107,7 @@ EOT;
 
 
 		$msg = EditWarningMsg::getInstance( $type, $cancel_url, $msg_params );
-		$msg->show($type);
+		$msg->show( $type );
 		unset( $msg );
 	}
 
@@ -126,7 +126,7 @@ EOT;
 			   $wgTS_Current, $wgTS_Timeout,
 			   $wgType_Article, $wgType_Article_Section_Conflict, $wgType_Section;
 
-		$out->addModules('ext.editwarning');
+		$out->addModules( 'ext.editwarning' );
 
 		$dbr = null;
 		$dbw = null;
@@ -138,7 +138,7 @@ EOT;
 
 		$request = $out->getRequest();
 
-		if ( $request->getVal('action') === 'edit' || $request->getVal('action') === 'formedit' || $request->getVal('veaction') === 'edit' ) {
+		if ( $request->getVal( 'action' ) === 'edit' || $request->getVal( 'action' ) === 'formedit' || $request->getVal( 'veaction' ) === 'edit' ) {
 
 			// Abort on nonexisting pages
 			if ( $out->getTitle()->getArticleID() < 1 ) {

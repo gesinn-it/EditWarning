@@ -48,7 +48,7 @@ class EditWarningMsg implements EditWarningMsgFactory {
 
         $path = $IP . "/extensions/EditWarning/templates";
 
-        if ( !isset(self::$instance[$type]) ) {
+        if ( !isset( self::$instance[$type] ) ) {
             switch ( $type ) {
                 case "ArticleNotice":
                     $params[] = wfMessage( 'ew-leave' )->text();
@@ -79,7 +79,7 @@ class EditWarningMsg implements EditWarningMsgFactory {
                     self::$instance[$type] = new EditWarningCancelMsg( $path );
                     break;
                 default:
-					throw new \InvalidArgumentException("Unknown message type." );
+					throw new \InvalidArgumentException( "Unknown message type." );
             }
         }
 

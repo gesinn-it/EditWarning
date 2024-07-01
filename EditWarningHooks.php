@@ -120,9 +120,8 @@ EOT;
 	 */
 
 	public static function edit( OutputPage $out, Skin $skin ) {
-		global $wgScriptPath, $request, $wgEditWarning_OnlyEditor, $PHP_SELF ,
-			   $wgTS_Current, $wgTS_Timeout,
-			   $wgType_Article, $wgType_Article_Section_Conflict, $wgType_Section;
+		global $request, $PHP_SELF, $wgTS_Timeout, $wgType_Article,
+		$wgType_Article_Section_Conflict, $wgType_Section;
 
 		$out->addModules( 'ext.editwarning' );
 

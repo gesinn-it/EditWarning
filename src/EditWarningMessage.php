@@ -25,7 +25,7 @@ use Exception;
  *
  * @author      Thomas David <nemphis@code-geek.de>
  * @copyright   2007-2011 Thomas David <nemphis@code-geek.de>
- * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2.0 or later
+ * @license     http://www.gnu.org/licenses/gpl-2.0.html GPL-2.0-or-later
  * @version     0.4-beta
  * @category    Extensions
  * @package     EditWarning

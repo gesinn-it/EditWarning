@@ -113,7 +113,8 @@ EOT;
 	/**
 	 * Action on article editing
 	 *
-	 * @hook BeforePageDisplay
+	 * This method is called by the BeforePageDisplay hook.
+	 *
 	 * @param object $editpage Editpage object.
 	 * @param object $ew EditWarning object
 	 * @return boolean|int It returns a constant int if it runs in unit test
@@ -369,7 +370,8 @@ EOT;
 	/**
 	 * Action on user logout.
 	 *
-	 * @hook UserLogout
+	 * This method is called by the UserLogout hook.
+	 *
 	 * @param user User object.
 	 * @return boolean Returns always true.
 	 *

@@ -370,7 +370,7 @@ EOT;
 	 * @return boolean Returns always true.
 	 *
 	 */
-	static function logout( $user ) {
+	public static function logout( $user ) {
 		$ew = new EditWarning();
 
 		$dbw = wfGetDB( DB_MASTER );

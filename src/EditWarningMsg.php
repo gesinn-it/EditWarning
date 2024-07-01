@@ -42,9 +42,9 @@ class EditWarningMsg implements EditWarningMsgFactory {
 	}
 
 	public static function getInstance( $type, $url = null, $params = null ) {
-		global $wgIP;
+		global $IP;
 
-		$path = $wgIP . "/extensions/EditWarning/templates";
+		$path = $IP . "/extensions/EditWarning/templates";
 
 		if ( !isset( self::$instance[$type] ) ) {
 			switch ( $type ) {

@@ -17,7 +17,7 @@ class EditWarningApiTest extends ApiTestCase {
 			'articleid' => 1,
 			'user' => 'Admin'
 		] );
-		$this->assertEquals( '1', $result[0]['success']['editwarning']['lock']['articleid'] );
+		$this->assertSame( '1', $result[0]['success']['editwarning']['lock']['articleid'] );
 	}
 
 	public function testUnlock() {
@@ -27,6 +27,6 @@ class EditWarningApiTest extends ApiTestCase {
 			'articleid' => 1,
 			'user' => 'Admin'
 		] );
-		$this->assertEquals( '1', $result[0]['success']['editwarning']['unlock']['articleid'] );
+		$this->assertSame( '1', $result[0]['success']['editwarning']['unlock']['articleid'] );
 	}
 }

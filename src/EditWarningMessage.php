@@ -111,7 +111,6 @@ abstract class EditWarningMessage {
 
 		$content = $this->processTemplate();
 		$wgOut->prependHTML( $content );
-
 	}
 
 }

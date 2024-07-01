@@ -36,11 +36,9 @@ class EditWarningMsg implements EditWarningMsgFactory {
 	private static $instance = array();
 
 	private function __construct() {
-
 	}
 
 	private function __clone() {
-
 	}
 
 	public static function getInstance( $type, $url = null, $params = null ) {

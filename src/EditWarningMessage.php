@@ -31,8 +31,6 @@ use Exception;
  * @package     EditWarning
  */
 
-
-
 abstract class EditWarningMessage {
 	private $_content;
 	private $_labels = array();
@@ -114,13 +112,5 @@ abstract class EditWarningMessage {
 	}
 
 }
-
-
-
-
-
-
-
-
 
 

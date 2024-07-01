@@ -92,7 +92,6 @@ EOT;
 		$difference = floatval( abs( time() - $lockobj->getTimestamp() ) );
 		$time_to_wait = round( $difference / 60, 0 );
 
-
 		// Parameters for message string
 		if ( $msgtype == $wgType_Article || $msgtype == $wgType_Section ) {
 			$msg_params[] = $lockobj->getUserName();
@@ -104,7 +103,6 @@ EOT;
 
 		// Use minutes or seconds string?
 		$msg_params[] = wfMessage( 'ew-minutes' )->text();
-
 
 		$msg = EditWarningMsg::getInstance( $type, $cancel_url, $msg_params );
 		$msg->show( $type );

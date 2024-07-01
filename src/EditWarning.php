@@ -31,7 +31,6 @@ namespace EditWarning;
  * @package     EditWarning
  */
 
-
 class EditWarning {
 	/**
 	 * @access private

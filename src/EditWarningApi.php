@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EditWarning;
 
 use ApiBase;

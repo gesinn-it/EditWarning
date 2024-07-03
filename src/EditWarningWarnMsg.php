@@ -30,6 +30,15 @@ namespace EditWarning;
  */
 
 class EditWarningWarnMsg extends EditWarningMessage {
+
+	/**
+	 * Constructor for initializing the object with the provided path and URL.
+	 *
+	 * This constructor loads a template and adds URL and cancel button labels.
+	 *
+	 * @param string $path The file path to the template directory.
+	 * @param string $url The URL to be set in the label.
+	 */
 	public function __construct( $path, $url ) {
 		$this->loadTemplate( $path . "/warning.html" );
 		$this->addLabel( 'URL', $url );

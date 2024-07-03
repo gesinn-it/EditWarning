@@ -30,6 +30,14 @@ namespace EditWarning;
  */
 
 class EditWarningCancelMsg extends EditWarningMessage {
+
+	/**
+	 * Constructor for initializing the object with the provided path and URL.
+	 *
+	 * This constructor loads a template and adds URL and cancel button labels.
+	 *
+	 * @param string $path The file path to the template directory.
+	 */
 	public function __construct( $path ) {
 		$this->loadTemplate( $path . "/canceled.html" );
 		$this->addLabelMsg( 'CANCELED', 'ew-canceled' );

@@ -35,30 +35,85 @@ abstract class EditWarningMessage {
 	private $_content;
 	private $_labels = [];
 
+	/**
+	 * Sets the content.
+	 *
+	 * This function assigns the provided content to the internal _content property.
+	 *
+	 * @param mixed $content The content to be set.
+	 */
 	public function setContent( $content ) {
 		$this->_content = $content;
 	}
 
+	/**
+	 * Gets the content.
+	 *
+	 * This function returns the internal _content property.
+	 *
+	 * @return mixed The content.
+	 */
 	public function getContent() {
 		return $this->_content;
 	}
 
+	/**
+	 * Adds a label message.
+	 *
+	 * This function sets a label with the message text corresponding to the provided message key.
+	 *
+	 * @param string $label The label to be set.
+	 * @param string $msgkey The key for the message text.
+	 */
 	public function addLabelMsg( $label, $msgkey ) {
 		$this->_labels[$label] = wfMessage( $msgkey )->text();
 	}
 
+	/**
+	 * Adds a label.
+	 *
+	 * This function sets a label.
+	 *
+	 * @param string $label The label to be set.
+	 * @param string $value The value for label.
+	 */
 	public function addLabel( $label, $value ) {
 		$this->_labels[$label] = $value;
 	}
 
+	/**
+	 * Sets a message with parameters.
+	 *
+	 * This function sets the 'MSG' label with the message text corresponding to the provided message key,
+	 * formatted with the provided parameters.
+	 *
+	 * @param string $msg The key for the message text.
+	 * @param array $params The parameters to be formatted into the message.
+	 */
 	public function setMsg( $msg, $params ) {
 		$this->_labels['MSG'] = wfMessage( $msg )->rawParams( $params )->plain();
 	}
 
+	/**
+	 * Gets the label.
+	 *
+	 * This function returns the internal _labels property.
+	 *
+	 * @return mixed The label.
+	 */
 	public function getLabels() {
 		return $this->_labels;
 	}
 
+	/**
+	 * Loads a template file and sets its content.
+	 *
+	 * This function opens the specified template file, reads its content, and sets it as the
+	 * content of the object.
+	 *
+	 * @param string $file_name The path to the template file to load.
+	 * @throws Exception If there is an error while loading the template file.
+	 */
 	public function loadTemplate( $file_name ) {
 		try {
 			$file = fopen( $file_name, "r" );

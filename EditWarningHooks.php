@@ -330,6 +330,16 @@ EOT;
 		return true;
 	}
 
+	/**
+	 * Handles schema updates for the extension.
+	 *
+	 * This static function updates the database schema for the extension by dropping the existing
+	 * 'editwarning_locks' table and creating a new one. This approach is taken to handle the renaming
+	 * of the 'timestamp' column, which is not allowed in Sqlite.
+	 *
+	 * @param DatabaseUpdater $updater The DatabaseUpdater instance used to handle the updates.
+	 * @return bool Returns true upon successful update.
+	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$dir = $GLOBALS['wgExtensionDirectory'] . '/EditWarning/sql/';
 

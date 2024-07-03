@@ -59,6 +59,15 @@ class EditWarningLock {
 	 */
 	private $timestamp;
 
+	/**
+	 * Constructor for initializing the object with the provided parent and database row.
+	 *
+	 * This constructor sets up the parent, user ID, user name, section, and timestamp
+	 * based on the values from the provided database row object.
+	 *
+	 * @param mixed $parent The parent object.
+	 * @param object $db_row The database row object containing user data.
+	 */
 	public function __construct( $parent, $db_row ) {
 		$this->setParent( $parent );
 		$this->setUserID( $db_row->user_id );

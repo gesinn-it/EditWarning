@@ -41,6 +41,17 @@ class EditWarningMsg implements EditWarningMsgFactory {
 	private function __clone() {
 	}
 
+	/**
+	 * Returns an instance of the class based on the provided type.
+	 *
+	 * This static function creates and returns an instance of the class. Optionally, it can take a URL
+	 * and additional parameters to customize the instance.
+	 *
+	 * @param string $type The type of instance to create.
+	 * @param string|null $url Optional. The URL to be associated with the instance.
+	 * @param array|null $params Optional. Additional parameters for the instance.
+	 * @return self An instance of the class.
+	 */
 	public static function getInstance( $type, $url = null, $params = null ) {
 		global $IP;
 

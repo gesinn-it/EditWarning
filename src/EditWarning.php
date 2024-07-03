@@ -374,8 +374,8 @@ class EditWarning {
 	/**
 	 * Checks if the given section lock is by the current user.
 	 *
-	 *
-	 * @return bool Return boolean value
+	 * @param SectionLock $sectionLock The section lock object to check against the current user.
+	 * @return bool Returns true if the section lock is owned by the current user, false otherwise.
 	 */
 	public function isSectionLockedByUser( $sectionLock ) {
 		if ( $sectionLock->getUserID() == $this->getUserID() ) {
@@ -468,7 +468,7 @@ class EditWarning {
 	/**
 	 * Remove all locks of an user from the database.
 	 *
-	 *
+	 * @param DatabaseWrapper $dbw The database writer object used for database operations.
 	 */
 	public function removeUserLocks( $dbw ) {
 		$condition = [ 'user_id' => $this->_user_id ];

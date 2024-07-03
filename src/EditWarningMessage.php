@@ -150,7 +150,7 @@ abstract class EditWarningMessage {
 	/**
 	 * Output the HTML code.
 	 *
-	 *
+	 * @param string $type The type of HTML content to output
 	 */
 	public function show( $type ) {
 		global $wgOut;

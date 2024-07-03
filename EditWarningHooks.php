@@ -53,6 +53,8 @@ EOT;
 	 * or articles.
 	 *
 	 * @param int $msgtype Type of edit (article or section).
+	 * @param int $timestamp Timestamp indicating when the lock was created or updated.
+	 * @param string $cancel_url URL to cancel the current action.
 	 */
 	private function showInfoMsg( $msgtype, $timestamp, $cancel_url ) {
 		global $wgEditWarning_ShowInfoBox, $wgType_Article;
@@ -73,7 +75,9 @@ EOT;
 	 * Function to show warning message about existing locks for sections or
 	 * articles.
 	 *
-	 * @param <type> $lockobj EditWarningLock object.
+	 * @param int $msgtype Type of message to display (Article, ArticleSectionConflict, Section).
+	 * @param EditWarningLock $lockobj The EditWarningLock object containing lock information.
+	 * @param string $cancel_url URL to cancel the current action.
 	 */
 	private function showWarningMsg( $msgtype, $lockobj, $cancel_url ) {
 		global $wgType_Article, $wgType_Article_Section_Conflict, $wgType_Section;
@@ -382,8 +386,8 @@ EOT;
 	 *
 	 * This method is called by the UserLogout hook.
 	 *
-	 * @param user User object.
-	 * @return bool Returns always true.
+	 * @param User $user The User object representing the user who is logging out.
+	 * @return bool Always returns true.
 	 *
 	 */
 	public static function logout( $user ) {

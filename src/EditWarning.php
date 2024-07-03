@@ -222,7 +222,6 @@ class EditWarning {
 	 * Returns the EditWarningLock object for a certain section.
 	 *
 	 *
-	 * @param int Section ID
 	 * @return object Returns the EditWarningLock object for the section or false.
 	 */
 	public function getSectionLock() {

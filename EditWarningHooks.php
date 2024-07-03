@@ -119,8 +119,8 @@ EOT;
 	 *
 	 * This method is called by the BeforePageDisplay hook.
 	 *
-	 * @param object $editpage Editpage object.
-	 * @param object $ew EditWarning object
+	 * @param OutputPage $out OutputPage object.
+	 * @param Skin $skin Skin object.
 	 * @return bool|int It returns a constant int if it runs in unit test
 	 *                     environment, else true.
 	 */

@@ -32,7 +32,19 @@ use Exception;
  */
 
 abstract class EditWarningMessage {
+
+	/**
+	 * Description of the $_content property.
+	 *
+	 * @var mixed Description of what $_content represents or contains.
+	 */
 	private $_content;
+
+	/**
+	 * Description of the $_labels property.
+	 *
+	 * @var array Array of labels associated with the object.
+	 */
 	private $_labels = [];
 
 	/**

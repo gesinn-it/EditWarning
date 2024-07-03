@@ -33,6 +33,12 @@ namespace EditWarning;
  * Singleton factory for EditWarningMessage subclasses.
  */
 class EditWarningMsg implements EditWarningMsgFactory {
+
+	/**
+	 * Singleton instance of the class.
+	 *
+	 * @var array The singleton instance stored as an array.
+	 */
 	private static $instance = [];
 
 	private function __construct() {

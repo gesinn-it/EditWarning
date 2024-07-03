@@ -139,7 +139,8 @@ abstract class EditWarningMessage {
 	/**
 	 * Replaces labels in template content with associated values.
 	 *
-	 *
+	 * @throws Exception If no template content is found.
+	 * @return string The processed template content with labels replaced by values.
 	 */
 	public function processTemplate() {
 		$content = $this->getContent();

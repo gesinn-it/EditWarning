@@ -1,8 +1,6 @@
 <?php
 namespace EditWarning;
 
-// use \EditWarning\InvalidTypeArgumentException;
-
 /**
  * Implementation of EditWarning class.
  *
@@ -206,6 +204,14 @@ class EditWarning {
 	 */
 	public function setSection( $section ) {
 		$this->_section = $section;
+	}
+
+	/**
+	 *
+	 * @param array $locks
+	 */
+	public function setLocks( $locks ) {
+		$this->_locks = $locks;
 	}
 
 	/**

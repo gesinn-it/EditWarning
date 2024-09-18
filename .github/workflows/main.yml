@@ -21,7 +21,7 @@ jobs:
             php_version: 7.4
             database_type: mysql
             database_image: "mysql:5.7"
-            coverage: true
+            coverage: false
             experimental: false
           - mediawiki_version: '1.39'
             php_version: 8.1
@@ -30,6 +30,18 @@ jobs:
             coverage: false
             experimental: false
           - mediawiki_version: '1.40'
+            php_version: 8.1
+            database_type: mysql
+            database_image: "mysql:8"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.41'
+            php_version: 8.1
+            database_type: mysql
+            database_image: "mysql:8"
+            coverage: false
+            experimental: false
+          - mediawiki_version: '1.42'
             php_version: 8.1
             database_type: mysql
             database_image: "mysql:8"

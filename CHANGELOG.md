@@ -36,3 +36,6 @@ This project adheres to [Semantic Versioning](https://semver.org/) and
   `EditWarningCancelMsg`/`EditWarningInfoMsg`/`EditWarningWarnMsg` subclasses, and all decision branches
   of `EditWarningHooks::edit()` (new/updated/conflicting article and section locks, anonymous users,
   PageForms' `action=formedit`), raising line coverage from ~32% to ~84%.
+- Added Phan static analysis (`.phan/config.php`, `.phan/baseline.php`, `composer phan`,
+  `make composer-phan`/`composer-phan-update-baseline`), run in CI for the MediaWiki 1.43/coverage job.
+  Pre-existing issues in code untouched by this change are captured in the baseline rather than fixed.

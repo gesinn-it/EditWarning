@@ -35,3 +35,18 @@ COMPOSER_EXT?=true
 
 # check for build dir and git submodule init if it does not exist
 include build/Makefile
+
+.PHONY: composer-phan
+composer-phan: .init ## Run Phan static analysis
+ifdef COMPOSER_EXT
+	$(compose-exec-wiki) bash -c "cd $(EXTENSION_FOLDER) && composer phan $(COMPOSER_PARAMS)"
+endif
+
+.PHONY: composer-phan-update-baseline
+composer-phan-update-baseline: .init ## Re-generate baseline and fix indentation for PHPCS
+ifdef COMPOSER_EXT
+	$(compose-exec-wiki) bash -c "cd $(EXTENSION_FOLDER) && composer phan -- --save-baseline=.phan/baseline.php || true"
+	$(compose) cp wiki:$(EXTENSION_FOLDER)/.phan/baseline.php .phan/baseline.php
+	unexpand --first-only -t 4 .phan/baseline.php > /tmp/baseline.php && mv /tmp/baseline.php .phan/baseline.php
+	$(compose) cp .phan/baseline.php wiki:$(EXTENSION_FOLDER)/.phan/baseline.php
+endif

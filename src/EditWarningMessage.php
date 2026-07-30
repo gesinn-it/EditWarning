@@ -103,7 +103,11 @@ abstract class EditWarningMessage {
 	 * @param array $params The parameters to be formatted into the message.
 	 */
 	public function setMsg( $msg, $params ) {
-		$this->_labels['MSG'] = wfMessage( $msg )->rawParams( $params )->plain();
+		$escapedParams = array_map(
+			static fn ( $param ) => htmlspecialchars( (string)$param, ENT_QUOTES ),
+			$params
+		);
+		$this->_labels['MSG'] = wfMessage( $msg )->rawParams( $escapedParams )->plain();
 	}
 
 	/**
@@ -124,14 +128,14 @@ abstract class EditWarningMessage {
 	 * content of the object.
 	 *
 	 * @param string $file_name The path to the template file to load.
-	 * @throws Exception If there is an error while loading the template file.
+	 * @throws \RuntimeException If there is an error while loading the template file.
 	 */
 	public function loadTemplate( $file_name ) {
 		try {
 			$file = fopen( $file_name, "r" );
 			$this->setContent( fread( $file, filesize( $file_name ) ) );
 		} catch ( Exception $e ) {
-			throw new Exception( $e );
+			throw new \RuntimeException( $e->getMessage(), 0, $e );
 		}
 		fclose( $file );
 	}
@@ -139,14 +143,14 @@ abstract class EditWarningMessage {
 	/**
 	 * Replaces labels in template content with associated values.
 	 *
-	 * @throws Exception If no template content is found.
+	 * @throws \RuntimeException If no template content is found.
 	 * @return string The processed template content with labels replaced by values.
 	 */
 	public function processTemplate() {
 		$content = $this->getContent();
 
 		if ( $content == null ) {
-			throw new Exception( "No template content found. You should load a template first." );
+			throw new \RuntimeException( "No template content found. You should load a template first." );
 		}
 
 		foreach ( $this->getLabels() as $label => $value ) {
@@ -164,6 +168,10 @@ abstract class EditWarningMessage {
 	 * Output the HTML code.
 	 *
 	 * @param string $type The type of HTML content to output
+	 * @suppress SecurityCheck-XSS Message params are escaped via htmlspecialchars() in
+	 *   setMsg() before being passed as rawParams(); Phan's taint tracker cannot see through
+	 *   that escaping across the Message::plain() boundary. Verified by
+	 *   EditWarningMessageIntegrationTest::testSetMsgEscapesHtmlInParams.
 	 */
 	public function show( $type ) {
 		global $wgOut;

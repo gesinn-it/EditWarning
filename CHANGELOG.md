@@ -18,6 +18,17 @@ This project adheres to [Semantic Versioning](https://semver.org/) and
   verify compatibility with PageForms-driven (`action=formedit`) edits.
 
 ### Fixed
+- Fixed `EditWarningApi` locking/unlocking a section always storing/removing the lock as section `0`
+  (whole-article) because the `section` request parameter, despite being passed to `EditWarning::setSection()`,
+  was never forwarded to `saveLock()`/`removeLock()`; the API's `section` parameter now has an effect.
+- Fixed `EditWarningApi` echoing `articleid` back as a string instead of the declared integer type by using
+  `extractRequestParams()` instead of raw `getVal()` calls.
+- Fixed `EditWarningMessage::setMsg()` interpolating message parameters (username, timestamps, cancel URL)
+  into the rendered warning/notice HTML without escaping, allowing HTML/script injection via a crafted
+  username; parameters are now escaped with `htmlspecialchars()` before substitution.
+- Fixed `EditWarningMessage::loadTemplate()` catching template read failures but re-throwing the base
+  `\Exception` class directly instead of a proper SPL exception; both `loadTemplate()` and
+  `processTemplate()` now throw `\RuntimeException`.
 - Fixed `composer update` failing in CI with a `PluginBlockedException` by allow-listing the `dealerdirect/phpcodesniffer-composer-installer` Composer plugin.
 - Fixed `EditWarning::addLock()` classifying locks by the inverse of their actual type: rows with
   `section = 0` (whole-article locks) were treated as section locks and vice versa, so

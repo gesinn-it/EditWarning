@@ -64,6 +64,18 @@ class EditWarningMessageTest extends TestCase {
 	}
 
 	/**
+	 * @covers EditWarning\EditWarningMessage::loadTemplate
+	 */
+	public function testLoadTemplateThrowsForMissingFile() {
+		$msg = $this->newMessage();
+		$path = dirname( __DIR__, 3 ) . '/templates/does-not-exist.html';
+
+		$this->expectException( \RuntimeException::class );
+
+		$msg->loadTemplate( $path );
+	}
+
+	/**
 	 * @covers EditWarning\EditWarningMessage::processTemplate
 	 */
 	public function testProcessTemplateThrowsWithoutContent() {

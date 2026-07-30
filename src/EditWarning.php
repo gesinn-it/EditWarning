@@ -130,11 +130,11 @@ class EditWarning {
 
 		switch ( $type ) {
 			case $wgTS_Timeout:
-				return mktime( date( "H" ), date( "i" ) + $timeout,
-				date( "s" ), date( "m" ), date( "d" ), date( "Y" ) );
+				return mktime( (int)date( "H" ), (int)date( "i" ) + $timeout,
+				(int)date( "s" ), (int)date( "m" ), (int)date( "d" ), (int)date( "Y" ) );
 			case $wgTS_Current:
-				return mktime( date( "H" ), date( "i" ),
-				date( "s" ), date( "m" ), date( "d" ), date( "Y" ) );
+				return mktime( (int)date( "H" ), (int)date( "i" ),
+				(int)date( "s" ), (int)date( "m" ), (int)date( "d" ), (int)date( "Y" ) );
 			default:
 				throw new \InvalidArgumentException(
 					"Invalid argument for type. Use TIMESTAMP_NEW or TIMESTAMP_EXPIRED constant."
@@ -184,9 +184,9 @@ class EditWarning {
 
 	/**
 	 *
-	 * @param int $article_id Id of the current article.
+	 * @param int|null $article_id Id of the current article.
 	 */
-	public function setArticleID( $article_id ) {
+	public function setArticleID( ?int $article_id ) {
 		$this->_article_id = $article_id;
 	}
 
@@ -200,9 +200,9 @@ class EditWarning {
 
 	/**
 	 *
-	 * @param int $section Id of the current section.
+	 * @param int|null $section Id of the current section.
 	 */
-	public function setSection( $section ) {
+	public function setSection( ?int $section ) {
 		$this->_section = $section;
 	}
 
@@ -218,7 +218,7 @@ class EditWarning {
 	 * Returns the article lock.
 	 *
 	 *
-	 * @return object Returns the EditWarningLock object for the article.
+	 * @return EditWarningLock|null Returns the EditWarningLock object for the article, or null if none.
 	 */
 	public function getArticleLock() {
 		return $this->_locks['article'];
@@ -228,7 +228,8 @@ class EditWarning {
 	 * Returns the EditWarningLock object for a certain section.
 	 *
 	 *
-	 * @return object Returns the EditWarningLock object for the section or false.
+	 * @return EditWarningLock|false|null Returns the EditWarningLock object for the section,
+	 *   or false if there are no section locks at all, or null if none match the current section.
 	 */
 	public function getSectionLock() {
 		if ( $this->_locks['section']['count'] == 0 ) {
@@ -340,7 +341,7 @@ class EditWarning {
 			return false;
 		}
 
-		if ( $this->getSectionLock( $this->_section ) == null ) {
+		if ( $this->getSectionLock() == null ) {
 			return false;
 		} else {
 			return true;
@@ -379,7 +380,7 @@ class EditWarning {
 	/**
 	 * Checks if the given section lock is by the current user.
 	 *
-	 * @param SectionLock $sectionLock The section lock object to check against the current user.
+	 * @param EditWarningLock $sectionLock The section lock object to check against the current user.
 	 * @return bool Returns true if the section lock is owned by the current user, false otherwise.
 	 */
 	public function isSectionLockedByUser( $sectionLock ) {
@@ -473,7 +474,7 @@ class EditWarning {
 	/**
 	 * Remove all locks of an user from the database.
 	 *
-	 * @param DatabaseWrapper $dbw The database writer object used for database operations.
+	 * @param object $dbw MediaWiki write connection object.
 	 */
 	public function removeUserLocks( $dbw ) {
 		$condition = [ 'user_id' => $this->_user_id ];

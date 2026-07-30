@@ -207,7 +207,7 @@ EOT;
 						return true;
 					}
 				} elseif ( $ew->isSectionLocked( $section ) ) {
-					$sectionLock = $ew->getSectionLock( $section );
+					$sectionLock = $ew->getSectionLock();
 
 					// Is the section locked by the user?
 					if ( $ew->isSectionLockedByUser( $sectionLock ) ) {

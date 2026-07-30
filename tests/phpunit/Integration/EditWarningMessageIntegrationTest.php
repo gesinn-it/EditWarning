@@ -47,6 +47,20 @@ class EditWarningMessageIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \EditWarning\EditWarningMessage::setMsg
+	 * @covers \EditWarning\EditWarningMessage::getLabels
+	 */
+	public function testSetMsgEscapesHtmlInParams() {
+		$msg = $this->newMessage();
+
+		$msg->setMsg( 'ew-notice-article', [ '2024-01-01', '10:00', '<script>alert(1)</script>' ] );
+
+		$labels = $msg->getLabels();
+		$this->assertStringNotContainsString( '<script>', $labels['MSG'] );
+		$this->assertStringContainsString( '&lt;script&gt;', $labels['MSG'] );
+	}
+
+	/**
 	 * @covers \EditWarning\EditWarningMessage::show
 	 * @covers \EditWarning\EditWarningMessage::processTemplate
 	 */

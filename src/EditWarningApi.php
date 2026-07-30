@@ -11,10 +11,11 @@ class EditWarningApi extends ApiBase {
 
 	public function execute() {
 		// Get Params
-		$ewAction = $this->getMain()->getVal( 'ewaction' );
-		$articleID = $this->getMain()->getVal( 'articleid' );
-		$sectionID = $this->getMain()->getVal( 'section' );
-		$user = User::newFromName( $this->getMain()->getVal( 'user' ) );
+		$params = $this->extractRequestParams();
+		$ewAction = $params['ewaction'];
+		$articleID = $params['articleid'];
+		$sectionID = $params['section'];
+		$user = User::newFromName( $params['user'] );
 
 		// Create EditWarning Object of current user and article ID.
 		$ew = new EditWarning();
@@ -27,12 +28,14 @@ class EditWarningApi extends ApiBase {
 			$ew->setSection( $sectionID );
 		}
 
+		$section = $sectionID ?? 0;
+
 		try {
 			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
-			$ew->removeLock( $dbw );
+			$ew->removeLock( $dbw, $section );
 
 			if ( $ewAction === 'lock' ) {
-				$ew->saveLock( $dbw );
+				$ew->saveLock( $dbw, $section );
 			}
 
 			$output = [ $ewAction => [

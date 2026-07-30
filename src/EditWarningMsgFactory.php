@@ -39,7 +39,7 @@ interface EditWarningMsgFactory {
 	 * @param string $type The type of instance to create.
 	 * @param string|null $url Optional. The URL to be associated with the instance.
 	 * @param array|null $params Optional. Additional parameters for the instance.
-	 * @return self An instance of the class.
+	 * @return EditWarningMessage An instance of the class.
 	 */
 	public static function getInstance( $type, $url = null, $params = null );
 }

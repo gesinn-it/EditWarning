@@ -11,10 +11,10 @@ endif
 EXTENSION=EditWarning
 
 # docker images
-MW_VERSION?=1.35
-PHP_VERSION?=7.4
-DB_TYPE?=sqlite
-DB_IMAGE?=""
+MW_VERSION?=1.43
+PHP_VERSION?=8.3
+DB_TYPE?=mysql
+DB_IMAGE?="mysql:8"
 
 # extensions
 

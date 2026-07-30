@@ -2,6 +2,7 @@ include::docs/attributes.adoc[]
 = {project_name}
 
 image:https://github.com/gesinn-it/EditWarning/actions/workflows/main.yml/badge.svg[CI,link=https://github.com/gesinn-it/EditWarning/actions/workflows/main.yml]
+image:https://codecov.io/gh/gesinn-it/EditWarning/branch/master/graph/badge.svg[Codecov,link=https://app.codecov.io/gh/gesinn-it/EditWarning]
 
 The EditWarning extension displays a warning if user edits a page/section which is currently being edited.
 

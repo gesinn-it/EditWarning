@@ -2,6 +2,7 @@
 namespace EditWarning;
 
 use DatabaseUpdater;
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use Skin;
 
@@ -150,8 +151,9 @@ EOT;
 			}
 
 			if ( !defined( 'EDITWARNING_UNITTEST' ) ) {
-				$dbr = wfGetDB( DB_REPLICA );
-				$dbw = wfGetDB( DB_MASTER );
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				$dbr = $lb->getConnection( DB_REPLICA );
+				$dbw = $lb->getConnection( DB_PRIMARY );
 			}
 
 			$ew->setUserID( $user->getID() );
@@ -373,7 +375,7 @@ EOT;
 			return true;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$ew->setUserID( $user->getID() );
 		$ew->setArticleID( $wikiPage->getTitle()->getArticleID() );
 		$ew->removeLock( $dbw );
@@ -393,7 +395,7 @@ EOT;
 	public static function logout( $user ) {
 		$ew = new EditWarning();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		$ew->setUserID( $user->getID() );
 		$ew->removeUserLocks( $dbw );
 

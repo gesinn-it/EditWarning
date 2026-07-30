@@ -4,6 +4,7 @@ namespace EditWarning;
 
 use ApiBase;
 use Exception;
+use MediaWiki\MediaWikiServices;
 use User;
 
 class EditWarningApi extends ApiBase {
@@ -27,7 +28,7 @@ class EditWarningApi extends ApiBase {
 		}
 
 		try {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 			$ew->removeLock( $dbw );
 
 			if ( $ewAction === 'lock' ) {

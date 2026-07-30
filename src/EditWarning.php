@@ -401,7 +401,7 @@ class EditWarning {
 		$lock = new EditWarningLock( $parent, $db_row );
 		$this->_locks['count']++;
 
-		if ( $lock->getSection() != 0 ) {
+		if ( $lock->getSection() == 0 ) {
 			$this->_locks['article'] = $lock;
 		} else {
 			$this->_locks['section']['count']++;

@@ -30,16 +30,9 @@ namespace EditWarning;
  */
 
 /**
- * Singleton factory for EditWarningMessage subclasses.
+ * Factory for EditWarningMessage subclasses.
  */
 class EditWarningMsg implements EditWarningMsgFactory {
-
-	/**
-	 * Singleton instance of the class.
-	 *
-	 * @var array The singleton instance stored as an array.
-	 */
-	private static $instance = [];
 
 	private function __construct() {
 	}
@@ -48,56 +41,54 @@ class EditWarningMsg implements EditWarningMsgFactory {
 	}
 
 	/**
-	 * Returns an instance of the class based on the provided type.
+	 * Returns a new instance of the class based on the provided type.
 	 *
-	 * This static function creates and returns an instance of the class. Optionally, it can take a URL
-	 * and additional parameters to customize the instance.
+	 * This static function creates and returns a new instance of the class on every call. Optionally,
+	 * it can take a URL and additional parameters to customize the instance. A new instance is required
+	 * per call because the rendered message embeds request-specific data (user name, lock timestamp,
+	 * cancel URL); caching a single instance per type would leak one user's data into another user's
+	 * warning message for the lifetime of the PHP worker process.
 	 *
 	 * @param string $type The type of instance to create.
 	 * @param string|null $url Optional. The URL to be associated with the instance.
 	 * @param array|null $params Optional. Additional parameters for the instance.
-	 * @return self An instance of the class.
+	 * @return EditWarningMessage An instance of the class.
 	 */
 	public static function getInstance( $type, $url = null, $params = null ) {
 		global $IP;
 
 		$path = $IP . "/extensions/EditWarning/templates";
 
-		if ( !isset( self::$instance[$type] ) ) {
-			switch ( $type ) {
-				case "ArticleNotice":
-					$params[] = wfMessage( 'ew-leave' )->text();
-					self::$instance[$type] = new EditWarningInfoMsg( $path, $url );
-					self::$instance[$type]->setMsg( 'ew-notice-article', $params );
-					break;
-				case "ArticleWarning":
-					$params[] = wfMessage( 'ew-leave' )->text();
-					self::$instance[$type] = new EditWarningWarnMsg( $path, $url );
-					self::$instance[$type]->setMsg( 'ew-warning-article', $params );
-					break;
-				case "ArticleSectionWarning":
-					$params[] = wfMessage( 'ew-leave' )->text();
-					self::$instance[$type] = new EditWarningWarnMsg( $path, $url );
-					self::$instance[$type]->setMsg( 'ew-warning-sectionedit', $params );
-					break;
-				case "SectionNotice":
-					$params[] = wfMessage( 'ew-leave' )->text();
-					self::$instance[$type] = new EditWarningInfoMsg( $path, $url );
-					self::$instance[$type]->setMsg( 'ew-notice-section', $params );
-					break;
-				case "SectionWarning":
-					$params[] = wfMessage( 'ew-leave' )->text();
-					self::$instance[$type] = new EditWarningWarnMsg( $path, $url );
-					self::$instance[$type]->setMsg( 'ew-warning-section', $params );
-					break;
-				case "Cancel":
-					self::$instance[$type] = new EditWarningCancelMsg( $path );
-					break;
-				default:
-					throw new \InvalidArgumentException( "Unknown message type." );
-			}
+		switch ( $type ) {
+			case "ArticleNotice":
+				$params[] = wfMessage( 'ew-leave' )->text();
+				$instance = new EditWarningInfoMsg( $path, $url );
+				$instance->setMsg( 'ew-notice-article', $params );
+				return $instance;
+			case "ArticleWarning":
+				$params[] = wfMessage( 'ew-leave' )->text();
+				$instance = new EditWarningWarnMsg( $path, $url );
+				$instance->setMsg( 'ew-warning-article', $params );
+				return $instance;
+			case "ArticleSectionWarning":
+				$params[] = wfMessage( 'ew-leave' )->text();
+				$instance = new EditWarningWarnMsg( $path, $url );
+				$instance->setMsg( 'ew-warning-sectionedit', $params );
+				return $instance;
+			case "SectionNotice":
+				$params[] = wfMessage( 'ew-leave' )->text();
+				$instance = new EditWarningInfoMsg( $path, $url );
+				$instance->setMsg( 'ew-notice-section', $params );
+				return $instance;
+			case "SectionWarning":
+				$params[] = wfMessage( 'ew-leave' )->text();
+				$instance = new EditWarningWarnMsg( $path, $url );
+				$instance->setMsg( 'ew-warning-section', $params );
+				return $instance;
+			case "Cancel":
+				return new EditWarningCancelMsg( $path );
+			default:
+				throw new \InvalidArgumentException( "Unknown message type." );
 		}
-
-		return self::$instance[$type];
 	}
 }

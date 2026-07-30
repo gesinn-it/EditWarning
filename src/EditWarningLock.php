@@ -57,7 +57,7 @@ class EditWarningLock {
 	 *
 	 * @var int Contains the unix timestamp of the lock.
 	 */
-	private $timestamp;
+	private $_timestamp;
 
 	/**
 	 * Constructor for initializing the object with the provided parent and database row.

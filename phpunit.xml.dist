@@ -10,6 +10,7 @@
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>src</directory>
+            <file>EditWarningHooks.php</file>
         </whitelist>
     </filter>
 </phpunit>

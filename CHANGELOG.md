@@ -13,6 +13,9 @@ This project adheres to [Semantic Versioning](https://semver.org/) and
 - Local `make install`/`make ci` now default to MySQL instead of SQLite, matching the CI matrix.
 - `EditWarningMsg::getInstance()` no longer caches message instances as a per-type singleton; it now
   builds a fresh instance on every call.
+- CI now installs gesinn.it's PageForms fork (`gesinn-it/mediawiki-extensions-PageForms`, pinned to
+  `2.1.9`) as a test dependency, configurable via the `PF_REPO`/`PF_VERSION` Makefile variables, to
+  verify compatibility with PageForms-driven (`action=formedit`) edits.
 
 ### Fixed
 - Fixed `composer update` failing in CI with a `PluginBlockedException` by allow-listing the `dealerdirect/phpcodesniffer-composer-installer` Composer plugin.

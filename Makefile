@@ -18,6 +18,13 @@ DB_IMAGE?="mysql:8"
 
 # extensions
 
+# PageForms
+# EditWarning integrates with PageForms edit forms, so CI installs it as a
+# dependency to verify compatibility. Use gesinn.it's own fork/variant,
+# pinned to the latest release tag rather than tracking master.
+PF_REPO?=gesinn-it/mediawiki-extensions-PageForms
+PF_VERSION?=2.1.9
+
 # composer
 # Enables "composer update" inside of extension
 COMPOSER_EXT?=true

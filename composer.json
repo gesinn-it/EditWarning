@@ -1,6 +1,9 @@
 {
 	"name": "gesinn-it/edit-warning",
   	"type": "mediawiki-extension",
+	"require": {
+		"php": ">=8.1"
+	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "43.0.0",
 		"mediawiki/mediawiki-phan-config": "0.14.0",
@@ -30,5 +33,10 @@
 		"phpunit": "php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist --testdox",
 		"phpunit-coverage": "php ../../tests/phpunit/phpunit.php -c phpunit.xml.dist --testdox --coverage-text --coverage-html coverage/php --coverage-clover coverage/php/coverage.xml",
 		"minus-x": "minus-x check ."
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }

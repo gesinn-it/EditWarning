@@ -5,3 +5,4 @@
 // NEVER edit or regenerate AGENTS.md manually.
 // ============================================================
 include::docs/attributes.adoc[]
+include::docs/gesinn-it-docs-master-pub/documents/mediawiki/AGENTS.adoc[leveloffset=+1]

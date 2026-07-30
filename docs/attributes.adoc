@@ -1,0 +1,4 @@
+:project_name: EditWarning
+:project_type: mediawiki
+:project_acronym: EW
+:phan:

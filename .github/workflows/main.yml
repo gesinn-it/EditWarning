@@ -57,5 +57,8 @@ jobs:
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage/php/coverage.xml
+          # Coverage files are written into the Docker volume mounted at
+          # build/coverage/ (see build/docker-compose-ci.yml), NOT at the
+          # repo root.
+          files: build/coverage/php/coverage.xml
         if: matrix.coverage == true

@@ -78,19 +78,21 @@ abstract class EditWarningMessage {
 	 * @param string $msgkey The key for the message text.
 	 */
 	public function addLabelMsg( $label, $msgkey ) {
-		$this->_labels[$label] = wfMessage( $msgkey )->text();
+		$this->addLabel( $label, wfMessage( $msgkey )->text() );
 	}
 
 	/**
 	 * Adds a label.
 	 *
-	 * This function sets a label.
+	 * This function sets a label. The value is HTML-escaped so that data originating outside
+	 * the trusted message catalogue (e.g. a cancel URL built from a page title) cannot break out
+	 * of the HTML attribute/text context it is substituted into by processTemplate().
 	 *
 	 * @param string $label The label to be set.
 	 * @param string $value The value for label.
 	 */
 	public function addLabel( $label, $value ) {
-		$this->_labels[$label] = $value;
+		$this->_labels[$label] = htmlspecialchars( (string)$value, ENT_QUOTES );
 	}
 
 	/**
@@ -154,9 +156,12 @@ abstract class EditWarningMessage {
 		}
 
 		foreach ( $this->getLabels() as $label => $value ) {
-			$content = preg_replace(
-					"/{{{" . $label . "}}}/",
-					$value,
+			// preg_replace_callback (rather than preg_replace) ensures $value is substituted
+			// literally; preg_replace would otherwise interpret sequences like "$1" or "\0"
+			// in $value as backreferences instead of literal text.
+			$content = preg_replace_callback(
+					"/{{{" . preg_quote( $label, '/' ) . "}}}/",
+					static fn ( array $matches ) => $value,
 					$content
 			);
 		}
@@ -168,10 +173,13 @@ abstract class EditWarningMessage {
 	 * Output the HTML code.
 	 *
 	 * @param string $type The type of HTML content to output
-	 * @suppress SecurityCheck-XSS Message params are escaped via htmlspecialchars() in
-	 *   setMsg() before being passed as rawParams(); Phan's taint tracker cannot see through
-	 *   that escaping across the Message::plain() boundary. Verified by
-	 *   EditWarningMessageIntegrationTest::testSetMsgEscapesHtmlInParams.
+	 * @suppress SecurityCheck-XSS All label values reaching processTemplate() are escaped with
+	 *   htmlspecialchars() before substitution: setMsg() escapes message params before passing
+	 *   them as rawParams(), and addLabel()/addLabelMsg() escape their value directly. Phan's
+	 *   taint tracker cannot see through that escaping across the Message::plain() boundary or
+	 *   the string concatenation in processTemplate(). Verified by
+	 *   EditWarningMessageIntegrationTest::testSetMsgEscapesHtmlInParams and
+	 *   EditWarningMessageTest::testProcessTemplateEscapesHtmlInLabelValues.
 	 */
 	public function show( $type ) {
 		global $wgOut;

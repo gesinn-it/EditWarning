@@ -113,4 +113,33 @@ class EditWarningMessageTest extends TestCase {
 
 		$this->assertSame( 'Hello {{{NAME}}}.', $result );
 	}
+
+	/**
+	 * @covers EditWarning\EditWarningMessage::processTemplate
+	 * @covers EditWarning\EditWarningMessage::addLabel
+	 */
+	public function testProcessTemplateEscapesHtmlInLabelValues() {
+		$msg = $this->newMessage();
+		$msg->setContent( '<a href="{{{URL}}}">Cancel</a>' );
+		$msg->addLabel( 'URL', '"><script>alert(1)</script>' );
+
+		$result = $msg->processTemplate();
+
+		$this->assertStringNotContainsString( '<script>', $result );
+		$this->assertStringContainsString( '&quot;&gt;&lt;script&gt;', $result );
+	}
+
+	/**
+	 * @covers EditWarning\EditWarningMessage::processTemplate
+	 * @covers EditWarning\EditWarningMessage::addLabel
+	 */
+	public function testProcessTemplateTreatsLabelValueAsLiteralNotBackreference() {
+		$msg = $this->newMessage();
+		$msg->setContent( 'Hello {{{NAME}}}.' );
+		$msg->addLabel( 'NAME', '$1 \\0' );
+
+		$result = $msg->processTemplate();
+
+		$this->assertSame( 'Hello $1 \\0.', $result );
+	}
 }

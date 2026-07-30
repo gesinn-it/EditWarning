@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](https://semver.org/) and
 ## [Unreleased]
 
 ### Changed
+- **BREAKING:** `action=editwarning` API requests must now be POSTed with a `csrf` token, and no longer
+  accept a `user` parameter; the lock is always attributed to the authenticated session user
+  (`ApiBase::getUser()`), never to an arbitrary request parameter. Anonymous requests are rejected.
+  `resources/js/editwarning.js` was updated to use `mw.Api().postWithToken('csrf', ...)` accordingly.
 - **BREAKING:** Dropped support for MediaWiki 1.35; the minimum supported version is now 1.39. `extension.json` now declares `requires.MediaWiki >= 1.39.0` and uses `manifest_version` 2.
 - Replaced deprecated `wfGetDB()`/`DB_MASTER` calls with `MediaWikiServices::getDBLoadBalancer()->getConnection( DB_REPLICA/DB_PRIMARY )` in `EditWarningHooks` and `EditWarningApi`.
 - Raised the minimum required PHP version to 8.1 in `composer.json`, in line with dropping MediaWiki 1.35/PHP 7.4.
@@ -18,6 +22,17 @@ This project adheres to [Semantic Versioning](https://semver.org/) and
   verify compatibility with PageForms-driven (`action=formedit`) edits.
 
 ### Fixed
+- Fixed `EditWarningApi` performing database writes (lock/unlock) without CSRF protection or
+  authentication: it never overrode `needsToken()`/`mustBePosted()`/`isWriteMode()`, and determined the
+  acting user from a `user` request parameter instead of the authenticated session, allowing any page to
+  lock or unlock articles on behalf of any user via a simple cross-site GET request.
+- Fixed `EditWarningMessage::addLabel()`/`addLabelMsg()` substituting arbitrary values (e.g. a cancel URL
+  built from a page title, which MediaWiki's default `$wgLegalTitleChars` allows to contain `"`) directly
+  into HTML templates without escaping, allowing HTML attribute-breakout/script injection via a crafted
+  page title; values are now escaped with `htmlspecialchars()` when added.
+- Fixed `EditWarningMessage::processTemplate()` using `preg_replace()` to substitute label values, which
+  interprets sequences like `$1` or `\0` in the replacement as backreferences instead of literal text;
+  switched to `preg_replace_callback()` so label values are always substituted literally.
 - Fixed `EditWarningApi` locking/unlocking a section always storing/removing the lock as section `0`
   (whole-article) because the `section` request parameter, despite being passed to `EditWarning::setSection()`,
   was never forwarded to `saveLock()`/`removeLock()`; the API's `section` parameter now has an effect.

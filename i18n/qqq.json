@@ -16,13 +16,13 @@
 	"ew-minutes"             : "minutes",
 	"ew-seconds"             : "seconds",
 	"ew-button-cancel"       : "Cancel",
-	"apihelp-editwarning-example-1": "Deletes the lock entry of user 'Admin' with article number 1 (Main_Page)",
-	"apihelp-editwarning-example-2": "Set a lock entry for user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
-	"apihelp-editwarning-example-3": "Deletes the lock entry of section 3 of user 'Admin' with article number 1 (Main_Page)",
-	"apihelp-editwarning-example-4": "Set a lock entry for section 3 of user 'Admin' with article number 56 (Person:Sebastian_Schmid)",
-	"apihelp-editwarning-summary": "Deletes or adds articles/sections of a user to the EditWarning Lock table based on the article id and/or section id",
+	"apihelp-editwarning-example-1": "Deletes the lock entry of the current user with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-2": "Set a lock entry for the current user with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-example-3": "Deletes the lock entry of section 3 of the current user with article number 1 (Main_Page)",
+	"apihelp-editwarning-example-4": "Set a lock entry for section 3 of the current user with article number 56 (Person:Sebastian_Schmid)",
+	"apihelp-editwarning-summary": "Deletes or adds articles/sections of the current user to the EditWarning Lock table based on the article id and/or section id",
 	"apihelp-editwarning-apiparam-ewaction": "'lock' will add an entry. 'unlock' will remove entry",
 	"apihelp-editwarning-apiparam-articleid": "Article ID of the page you want to lock. (e.g. 56)",
 	"apihelp-editwarning-apiparam-section": "Section ID of the article you want to lock. (e.g. 3)",
-	"apihelp-editwarning-apiparam-user": "Valid User that the lock entry is related to (e.g. Admin)"
+	"editwarning-error-notloggedin": "Error shown when an anonymous user tries to call the editwarning API module."
 }

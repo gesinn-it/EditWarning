@@ -17,24 +17,18 @@ jobs:
     strategy:
       matrix:
         include:
-          - mediawiki_version: '1.35'
-            php_version: 7.4
-            database_type: mysql
-            database_image: "mysql:5.7"
-            coverage: false
-            experimental: false
           - mediawiki_version: '1.39'
             php_version: 8.1
             database_type: mysql
             database_image: "mysql:8"
             coverage: false
             experimental: false
-          # - mediawiki_version: '1.43'
-          #   php_version: 8.1
-          #   database_type: mysql
-          #   database_image: "mysql:8"
-          #   coverage: false
-          #   experimental: false
+          - mediawiki_version: '1.43'
+            php_version: 8.3
+            database_type: mysql
+            database_image: "mysql:8"
+            coverage: true
+            experimental: false
 
     env:
       MW_VERSION: ${{ matrix.mediawiki_version }}

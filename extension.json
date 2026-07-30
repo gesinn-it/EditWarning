@@ -61,13 +61,30 @@
 		}
 	},
 	"config": {
-		"EditWarning_Timeout":  10,
-		"EditWarning_ShowInfoBox": false,
-		"TS_Timeout": 1,
-		"TS_Current": 2,
-		"Type_Article": 1,
-		"Type_Article_Section_Conflict": 2,
-		"Type_Section": 3
+		"EditWarning_Timeout": {
+			"value": 10
+		},
+		"EditWarning_ShowInfoBox": {
+			"value": false
+		},
+		"TS_Timeout": {
+			"value": 1
+		},
+		"TS_Current": {
+			"value": 2
+		},
+		"Type_Article": {
+			"value": 1
+		},
+		"Type_Article_Section_Conflict": {
+			"value": 2
+		},
+		"Type_Section": {
+			"value": 3
+		}
 	},
-	"manifest_version": 1
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"manifest_version": 2
 }

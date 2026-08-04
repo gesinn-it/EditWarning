@@ -1,9 +1,8 @@
 <?php
 
 use EditWarning\EditWarningMsg;
-use PHPUnit\Framework\TestCase;
 
-class EditWarningMsgTest extends TestCase {
+class EditWarningMsgTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
